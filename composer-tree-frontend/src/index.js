@@ -36,14 +36,26 @@ class Tree  {
     }
 }
 
+class navLink {
+    constructor(text, urlEnd) {
+        this.text = text;
+        this.urlEnd = urlEnd;
+    }
+
+    display(parent) {
+        const link = document.createElement("a")
+        link.href = BACKEND_URL + this.urlEnd
+        link.innerHTML = this.text 
+        parent.appendChild(link)
+        return link 
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     const content = document.querySelector(".content")
     const topNav = document.querySelector("NAV")
     const heading = document.querySelector('h1')
-    indexLink = document.createElement("a")
-    indexLink.href = `${BACKEND_URL}/trees`
-    indexLink.innerHTML = "View your idea trees"
-    topNav.appendChild(indexLink)
+    const indexLink = new navLink("View your idea trees", "/trees").display(topNav)
     indexLink.addEventListener("click", function(event) {
         event.preventDefault();
         fetch(event.target.href)
