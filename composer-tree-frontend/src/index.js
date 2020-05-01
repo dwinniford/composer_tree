@@ -1,8 +1,19 @@
-console.log("testing...")
 const BACKEND_URL = 'http://localhost:3000';
-fetch(`${BACKEND_URL}/trees`)
-    .then(response => response.json())
-    .then(json => console.log(json))
+
+
+class Tree  {
+    constructor(json) {
+        this.title = json.title;
+        this.description = json.description 
+    }
+    displayShow(heading, content) {
+        heading.innerHTML = this.title
+        content.removeChild(content.childNodes[0])
+        const description = document.createElement("p")
+        description.innerHTML = this.description
+        content.appendChild(description)
+    }
+}
 
 document.addEventListener("DOMContentLoaded", function() {
     const content = document.querySelector(".content")
@@ -29,11 +40,8 @@ document.addEventListener("DOMContentLoaded", function() {
                         fetch(`${BACKEND_URL}/trees/${parseInt(event.target.getAttribute("data-id"))}`)
                             .then(resp => resp.json())
                             .then(function(json) {
-                                heading.innerHTML = json.title 
-                                content.removeChild(content.childNodes[0])
-                                const description = document.createElement("p")
-                                description.innerHTML = json.description
-                                content.appendChild(description)
+                                const tree = new Tree(json)
+                                tree.displayShow(heading, content)
                             })
                     })
 
