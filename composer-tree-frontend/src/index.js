@@ -37,9 +37,10 @@ class Tree  {
 }
 
 class navLink {
-    constructor(text, urlEnd) {
+    constructor(text, urlEnd, callback) {
         this.text = text;
         this.urlEnd = urlEnd;
+        this.callback = callback;
     }
 
     display(parent) {
@@ -47,6 +48,17 @@ class navLink {
         link.href = BACKEND_URL + this.urlEnd
         link.innerHTML = this.text 
         parent.appendChild(link)
+        debugger 
+        link.addEventListener("click", function(event) {
+            debugger 
+            event.preventDefault();
+            fetch(event.target.href)
+                .then(resp => resp.json())
+                .then(function(json) {
+                    // lost this context.  how can i pass the callback attribute to this area
+                    Tree.displayIndex(json, document.querySelector('h1'), document.querySelector(".content"))
+                })
+        })
         return link 
     }
 }
@@ -55,15 +67,15 @@ document.addEventListener("DOMContentLoaded", function() {
     const content = document.querySelector(".content")
     const topNav = document.querySelector("NAV")
     const heading = document.querySelector('h1')
-    const indexLink = new navLink("View your idea trees", "/trees").display(topNav)
-    indexLink.addEventListener("click", function(event) {
-        event.preventDefault();
-        fetch(event.target.href)
-            .then(resp => resp.json())
-            .then(function(json) {
-                Tree.displayIndex(json, heading, content)
-            })
-    })
+    const indexLink = new navLink("View your idea trees", "/trees", Tree.displayIndex).display(topNav)
+    // indexLink.addEventListener("click", function(event) {
+    //     event.preventDefault();
+    //     fetch(event.target.href)
+    //         .then(resp => resp.json())
+    //         .then(function(json) {
+    //             Tree.displayIndex(json, heading, content)
+    //         })
+    // })
      
 
 })
