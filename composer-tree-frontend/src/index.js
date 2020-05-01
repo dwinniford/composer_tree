@@ -13,6 +13,27 @@ class Tree  {
         description.innerHTML = this.description
         content.appendChild(description)
     }
+    static displayIndex(json, heading, content) {
+        heading.innerHTML = "Your Idea Trees"
+        const list = document.createElement('ul')
+        json.forEach(element => {
+            const item = document.createElement('li')
+            item.innerHTML = element.title
+            item.setAttribute("data-id", element.id )
+            list.appendChild(item)
+            item.addEventListener("click", function(event) {
+                fetch(`${BACKEND_URL}/trees/${parseInt(event.target.getAttribute("data-id"))}`)
+                    .then(resp => resp.json())
+                    .then(function(json) {
+                        const tree = new Tree(json)
+                        tree.displayShow(heading, content)
+                    })
+            })
+
+        });
+        content.removeChild(content.childNodes[0])
+        content.appendChild(list)
+    }
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -25,29 +46,10 @@ document.addEventListener("DOMContentLoaded", function() {
     topNav.appendChild(indexLink)
     indexLink.addEventListener("click", function(event) {
         event.preventDefault();
-        fetch(indexLink.href)
+        fetch(event.target.href)
             .then(resp => resp.json())
             .then(function(json) {
-                document.querySelector('h1').innerHTML = "Your Idea Trees"
-                const list = document.createElement('ul')
-                json.forEach(element => {
-                    const item = document.createElement('li')
-                    item.innerHTML = element.title
-                    item.setAttribute("data-id", element.id )
-                    list.appendChild(item)
-                    item.addEventListener("click", function(event) {
-                        
-                        fetch(`${BACKEND_URL}/trees/${parseInt(event.target.getAttribute("data-id"))}`)
-                            .then(resp => resp.json())
-                            .then(function(json) {
-                                const tree = new Tree(json)
-                                tree.displayShow(heading, content)
-                            })
-                    })
-
-                });
-                content.removeChild(content.childNodes[0])
-                content.appendChild(list)
+                Tree.displayIndex(json, heading, content)
             })
     })
      
