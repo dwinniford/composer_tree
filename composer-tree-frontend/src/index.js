@@ -5,8 +5,9 @@ fetch(`${BACKEND_URL}/trees`)
     .then(json => console.log(json))
 
 document.addEventListener("DOMContentLoaded", function() {
-
+    const content = document.querySelector(".content")
     const topNav = document.querySelector("NAV")
+    const heading = document.querySelector('h1')
     indexLink = document.createElement("a")
     indexLink.href = `${BACKEND_URL}/trees`
     indexLink.innerHTML = "View your idea trees"
@@ -28,12 +29,17 @@ document.addEventListener("DOMContentLoaded", function() {
                         fetch(`${BACKEND_URL}/trees/${parseInt(event.target.getAttribute("data-id"))}`)
                             .then(resp => resp.json())
                             .then(function(json) {
-                                console.log(json)
+                                heading.innerHTML = json.title 
+                                content.removeChild(content.childNodes[0])
+                                const description = document.createElement("p")
+                                description.innerHTML = json.description
+                                content.appendChild(description)
                             })
                     })
 
                 });
-                document.querySelector("main").appendChild(list)
+                content.removeChild(content.childNodes[0])
+                content.appendChild(list)
             })
     })
      
