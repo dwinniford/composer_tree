@@ -19,10 +19,24 @@ class Tree  {
         const treeInstance = this 
         const editTreeLink = new DisplayLink("edit", function(){
             const treeForm = new Form(Tree.fieldsArray(), "/trees/"+treeInstance.id, "PATCH", Tree)
-            
             treeForm.display(treeInstance)
         })
         editTreeLink.display(content)
+        // const deleteTreeLink = new navLink("delete", "/trees/"+treeInstance.id, function() {
+            
+        // })
+        const deleteLink = document.createElement("a")
+        deleteLink.href = BACKEND_URL + "/trees/"+treeInstance.id
+        deleteLink.innerHTML = "delete" 
+        content.appendChild(deleteLink)
+        deleteLink.addEventListener("click", function(event) {
+            event.preventDefault();
+            fetch(event.target.href, {method: "DELETE"})
+                .then(resp => resp.json())
+                .then(function(json) {
+                    console.log(json)
+                })
+        }) 
     }
     static displayIndex(json) {
         heading.innerHTML = "Your Idea Trees"
@@ -74,6 +88,7 @@ class NavLink {
         // one solution is to create a variable for the navLink instance.  Another is to bind the execution context.
         link.addEventListener("click", function(event) {
             // this now refers to link(the html element) because it is the object to the left of the function
+            
             event.preventDefault();
             fetch(event.target.href)
                 .then(resp => resp.json())
