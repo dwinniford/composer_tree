@@ -121,14 +121,14 @@ class Form {
         content.appendChild(form)
         form.addEventListener("submit", function(event) {
             event.preventDefault()
-            const titleInput = document.querySelector("input#title").value
-            const descriptionInput = document.querySelector("input#description").value 
+            const titleInput = document.querySelector("input#title")
+            const descriptionInput = document.querySelector("input#description")
             const configObject = {
                 method: event.target.method,
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({tree: {title: titleInput, description: descriptionInput}})
+                body: JSON.stringify({tree: {`${titleInput.id}`: titleInput.value, `${descriptionInput.id}`: descriptionInput.value}})
                 
             }
             fetch(event.target.action, configObject)
