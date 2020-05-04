@@ -39,7 +39,7 @@ class Tree  {
     }
 }
 
-class navLink {
+class NavLink {
     constructor(text, urlEnd, callback) {
         this.text = text;
         this.urlEnd = urlEnd;
@@ -68,7 +68,59 @@ class navLink {
         return link 
     }
 }
-const indexLink = new navLink("View your idea trees", "/trees", Tree.displayIndex).display(topNav)
+
+class DisplayLink {
+    // for links that only render html and don't need to talk to the backend
+    // make sure callback is passed in with bind when execution context matters
+    constructor(text, callback) {
+        this.text = text;
+        this.callback = callback;
+    }
+    display(parent) {
+        const link = document.createElement("a")
+        link.innerHTML = this.text 
+        parent.appendChild(link)
+        const linkCallback = this.callback
+        link.addEventListener("click", function(event) {
+            linkCallback()
+        }) 
+        return link 
+    }
+}
+
+class Form { 
+    constructor(fieldsArray, urlEnd, method, title) {
+        this.fieldsArray = fieldsArray;
+        this.urlEnd = urlEnd;
+        this.method = method;
+        this.title = title;
+    }
+
+    display() {
+        debugger 
+        heading.innerHTML = this.title
+        content.removeChild(content.childNodes[0])
+        const form = document.createElement("FORM")
+        form.action = BACKEND_URL + this.urlEnd
+        form.method = this.method
+        this.fieldsArray.forEach(function(element) {
+            const input = document.createElement("INPUT")
+            input.setAttribute("type", "text")
+            input.id = element[0]
+            const label = document.createElement("LABEL")
+            label.innerHTML = element[0]
+            label.for = element[0]
+            form.appendChild(label)
+            form.appendChild(input)
+        })
+        content.appendChild(form)
+    }
+}
+
+const indexLink = new NavLink("View your idea trees", "/trees", Tree.displayIndex).display(topNav)
+const treeForm = new Form([["title", "text"], ["description", "text"]], "/trees", "POST", "Create a New Idea Tree")
+const newLink = new DisplayLink("Add an Idea Tree", treeForm.display.bind(treeForm)).display(topNav)
+
 
 
 document.addEventListener("DOMContentLoaded", function() {
