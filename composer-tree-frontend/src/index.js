@@ -15,6 +15,12 @@ class Tree  {
         const description = document.createElement("p")
         description.innerHTML = this.description
         content.appendChild(description)
+        const treeInstance = this 
+        const editTreeLink = new DisplayLink("edit", function(){
+            const treeForm = new Form(Tree.fieldsArray(), "/trees", "PATCH", Tree)
+            treeForm.display(treeInstance)
+        })
+        editTreeLink.display(content)
     }
     static displayIndex(json) {
         heading.innerHTML = "Your Idea Trees"
@@ -106,7 +112,7 @@ class Form {
         this.classObject = classObject
     }
 
-    display() {
+    display(classInstance = false) {
         const formClassObject = this.classObject
         heading.innerHTML = this.classObject.newFormTitle()
         content.removeChild(content.childNodes[0])
@@ -122,6 +128,9 @@ class Form {
             const label = document.createElement("LABEL")
             label.innerHTML = element[0]
             label.for = element[0]
+            if (classInstance) {
+                input.value = classInstance[element[0]]
+            }
             form.appendChild(label)
             form.appendChild(input)
         })
