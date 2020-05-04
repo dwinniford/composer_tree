@@ -119,6 +119,25 @@ class Form {
         submit.setAttribute("type", "submit")
         form.appendChild(submit)
         content.appendChild(form)
+        form.addEventListener("submit", function(event) {
+            event.preventDefault()
+            const titleInput = document.querySelector("input#title").value
+            const descriptionInput = document.querySelector("input#description").value 
+            const configObject = {
+                method: event.target.method,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({tree: {title: titleInput, description: descriptionInput}})
+                
+            }
+            fetch(event.target.action, configObject)
+                .then(resp => resp.json())
+                .then(function(json) {
+                    const newTree = new Tree(json)
+                    newTree.displayShow()
+                })
+        })
     }
 }
 
