@@ -1,4 +1,7 @@
 const BACKEND_URL = 'http://localhost:3000';
+const content = document.querySelector(".content")
+const topNav = document.querySelector("NAV")
+const heading = document.querySelector('h1')
 
 
 class Tree  {
@@ -48,34 +51,31 @@ class navLink {
         link.href = BACKEND_URL + this.urlEnd
         link.innerHTML = this.text 
         parent.appendChild(link)
-        debugger 
+        const navLinkInstance = this 
+        // this is still in scope
+        // one solution is to create a variable for the navLink instance.  Another is to bind the execution context.
         link.addEventListener("click", function(event) {
-            debugger 
+            // this now refers to link(the html element) because it is the object to the left of the function
             event.preventDefault();
             fetch(event.target.href)
                 .then(resp => resp.json())
                 .then(function(json) {
                     // lost this context.  how can i pass the callback attribute to this area
-                    Tree.displayIndex(json, document.querySelector('h1'), document.querySelector(".content"))
+                    navLinkInstance.callback(json, document.querySelector('h1'), document.querySelector(".content"))
                 })
-        })
+        }) 
+        // adding bind here does not work.  cannot add bind to undefined. link is still the exectution context
         return link 
     }
 }
+const indexLink = new navLink("View your idea trees", "/trees", Tree.displayIndex).display(topNav)
+
 
 document.addEventListener("DOMContentLoaded", function() {
-    const content = document.querySelector(".content")
-    const topNav = document.querySelector("NAV")
-    const heading = document.querySelector('h1')
-    const indexLink = new navLink("View your idea trees", "/trees", Tree.displayIndex).display(topNav)
-    // indexLink.addEventListener("click", function(event) {
-    //     event.preventDefault();
-    //     fetch(event.target.href)
-    //         .then(resp => resp.json())
-    //         .then(function(json) {
-    //             Tree.displayIndex(json, heading, content)
-    //         })
-    // })
+    // const content = document.querySelector(".content")
+    // const topNav = document.querySelector("NAV")
+    // const heading = document.querySelector('h1')
+    // const indexLink = new navLink("View your idea trees", "/trees", Tree.displayIndex).display(topNav)
      
 
 })
