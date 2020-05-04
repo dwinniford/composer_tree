@@ -40,6 +40,10 @@ class Tree  {
     static formData(title, description) {
         return {tree: {title: title, description: description}}
     }
+
+    static fieldsArray() {
+        return [["title", "text"], ["description", "text"]]
+    }
 }
 
 class NavLink {
@@ -147,7 +151,7 @@ class Form {
 }
 
 const indexLink = new NavLink("View your idea trees", "/trees", Tree.displayIndex).display(topNav)
-const treeForm = new Form([["title", "text"], ["description", "text"]], "/trees", "POST", "Create a New Idea Tree", Tree)
+const treeForm = new Form(Tree.fieldsArray(), "/trees", "POST", "Create a New Idea Tree", Tree)
 const newLink = new DisplayLink("Add an Idea Tree", treeForm.display.bind(treeForm)).display(topNav)
 
 
