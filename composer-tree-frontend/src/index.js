@@ -97,12 +97,13 @@ class Form {
     }
 
     display() {
-        debugger 
+        
         heading.innerHTML = this.title
         content.removeChild(content.childNodes[0])
         const form = document.createElement("FORM")
         form.action = BACKEND_URL + this.urlEnd
         form.method = this.method
+        
         this.fieldsArray.forEach(function(element) {
             const input = document.createElement("INPUT")
             input.setAttribute("type", "text")
@@ -113,6 +114,10 @@ class Form {
             form.appendChild(label)
             form.appendChild(input)
         })
+        const submit = document.createElement("button")
+        submit.innerHTML = "Submit"
+        submit.setAttribute("type", "submit")
+        form.appendChild(submit)
         content.appendChild(form)
     }
 }
