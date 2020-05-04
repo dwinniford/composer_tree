@@ -7,17 +7,19 @@ const heading = document.querySelector('h1')
 class Tree  {
     constructor(json) {
         this.title = json.title;
-        this.description = json.description 
+        this.description = json.description;
+        this.id = json.id; 
     }
     displayShow() {
         heading.innerHTML = this.title
-        content.removeChild(content.childNodes[0])
+        content.innerHTML = ''
         const description = document.createElement("p")
         description.innerHTML = this.description
         content.appendChild(description)
         const treeInstance = this 
         const editTreeLink = new DisplayLink("edit", function(){
-            const treeForm = new Form(Tree.fieldsArray(), "/trees", "PATCH", Tree)
+            const treeForm = new Form(Tree.fieldsArray(), "/trees/"+treeInstance.id, "PATCH", Tree)
+            
             treeForm.display(treeInstance)
         })
         editTreeLink.display(content)
@@ -40,7 +42,7 @@ class Tree  {
             })
 
         });
-        content.removeChild(content.childNodes[0])
+        content.innerHTML = ''
         content.appendChild(list)
     }
     static formData(title, description) {
@@ -115,10 +117,11 @@ class Form {
     display(classInstance = false) {
         const formClassObject = this.classObject
         heading.innerHTML = this.classObject.newFormTitle()
-        content.removeChild(content.childNodes[0])
+        content.innerHTML = ''
         const form = document.createElement("FORM")
         form.action = BACKEND_URL + this.urlEnd
-        form.method = this.method
+        const formMethod = this.method
+        
         form.classList.add("tree")
         
         this.fieldsArray.forEach(function(element) {
@@ -142,20 +145,27 @@ class Form {
         form.addEventListener("submit", function(event) {
             event.preventDefault()
             const titleInput = document.querySelector("input#title").value 
-            const descriptionInput = document.querySelector("input#description").value 
+            const descriptionInput = document.querySelector("input#description").value
+            // abstract out these two.  iterate through array query for input and push value into array. spread array into data 
+            const data = formClassObject.formData(titleInput, descriptionInput)
             const configObject = {
-                method: event.target.method,
+                // cannot get method directly from form because html form only accepts get and post
+                method: formMethod,
+                // mode: "no-cors",
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(formClassObject.formData(titleInput, descriptionInput))
+                body: JSON.stringify(data)
                 
             }
+            debugger 
             fetch(event.target.action, configObject)
                 .then(resp => resp.json())
                 .then(function(json) {
                     const newInstance = new formClassObject(json)
                     newInstance.displayShow()
+                }).catch(function(errors) {
+                    console.log(errors)
                 })
         })
     }
