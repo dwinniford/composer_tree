@@ -44,6 +44,9 @@ class Tree  {
     static fieldsArray() {
         return [["title", "text"], ["description", "text"]]
     }
+    static newFormTitle() {
+        return "Create a New Idea Tree"
+    }
 }
 
 class NavLink {
@@ -96,17 +99,16 @@ class DisplayLink {
 }
 
 class Form { 
-    constructor(fieldsArray, urlEnd, method, title, classObject) {
+    constructor(fieldsArray, urlEnd, method, classObject) {
         this.fieldsArray = fieldsArray;
         this.urlEnd = urlEnd;
         this.method = method;
-        this.title = title;
         this.classObject = classObject
     }
 
     display() {
         const formClassObject = this.classObject
-        heading.innerHTML = this.title
+        heading.innerHTML = this.classObject.newFormTitle()
         content.removeChild(content.childNodes[0])
         const form = document.createElement("FORM")
         form.action = BACKEND_URL + this.urlEnd
@@ -115,7 +117,7 @@ class Form {
         
         this.fieldsArray.forEach(function(element) {
             const input = document.createElement("INPUT")
-            input.setAttribute("type", "text")
+            input.setAttribute("type", element[1])
             input.id = element[0]
             const label = document.createElement("LABEL")
             label.innerHTML = element[0]
@@ -151,16 +153,8 @@ class Form {
 }
 
 const indexLink = new NavLink("View your idea trees", "/trees", Tree.displayIndex).display(topNav)
-const treeForm = new Form(Tree.fieldsArray(), "/trees", "POST", "Create a New Idea Tree", Tree)
+const treeForm = new Form(Tree.fieldsArray(), "/trees", "POST", Tree)
+// refactor form to use Tree class method for title
 const newLink = new DisplayLink("Add an Idea Tree", treeForm.display.bind(treeForm)).display(topNav)
 
 
-
-document.addEventListener("DOMContentLoaded", function() {
-    // const content = document.querySelector(".content")
-    // const topNav = document.querySelector("NAV")
-    // const heading = document.querySelector('h1')
-    // const indexLink = new navLink("View your idea trees", "/trees", Tree.displayIndex).display(topNav)
-     
-
-})
