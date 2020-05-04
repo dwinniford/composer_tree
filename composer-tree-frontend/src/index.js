@@ -9,14 +9,14 @@ class Tree  {
         this.title = json.title;
         this.description = json.description 
     }
-    displayShow(heading, content) {
+    displayShow() {
         heading.innerHTML = this.title
         content.removeChild(content.childNodes[0])
         const description = document.createElement("p")
         description.innerHTML = this.description
         content.appendChild(description)
     }
-    static displayIndex(json, heading, content) {
+    static displayIndex(json) {
         heading.innerHTML = "Your Idea Trees"
         const list = document.createElement('ul')
         json.forEach(element => {
@@ -29,7 +29,7 @@ class Tree  {
                     .then(resp => resp.json())
                     .then(function(json) {
                         const tree = new Tree(json)
-                        tree.displayShow(heading, content)
+                        tree.displayShow()
                     })
             })
 
@@ -61,7 +61,7 @@ class navLink {
                 .then(resp => resp.json())
                 .then(function(json) {
                     // lost this context.  how can i pass the callback attribute to this area
-                    navLinkInstance.callback(json, document.querySelector('h1'), document.querySelector(".content"))
+                    navLinkInstance.callback(json)
                 })
         }) 
         // adding bind here does not work.  cannot add bind to undefined. link is still the exectution context
