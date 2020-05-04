@@ -37,6 +37,9 @@ class Tree  {
         content.removeChild(content.childNodes[0])
         content.appendChild(list)
     }
+    static formData(title, description) {
+        return {tree: {title: title, description: description}}
+    }
 }
 
 class NavLink {
@@ -103,6 +106,7 @@ class Form {
         const form = document.createElement("FORM")
         form.action = BACKEND_URL + this.urlEnd
         form.method = this.method
+        form.classList.add("tree")
         
         this.fieldsArray.forEach(function(element) {
             const input = document.createElement("INPUT")
@@ -121,14 +125,14 @@ class Form {
         content.appendChild(form)
         form.addEventListener("submit", function(event) {
             event.preventDefault()
-            const titleInput = document.querySelector("input#title")
-            const descriptionInput = document.querySelector("input#description")
+            const titleInput = document.querySelector("input#title").value 
+            const descriptionInput = document.querySelector("input#description").value 
             const configObject = {
                 method: event.target.method,
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({tree: {`${titleInput.id}`: titleInput.value, `${descriptionInput.id}`: descriptionInput.value}})
+                body: JSON.stringify(Tree.formData(titleInput, descriptionInput))
                 
             }
             fetch(event.target.action, configObject)
