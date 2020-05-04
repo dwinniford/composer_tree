@@ -32,9 +32,11 @@ class Tree  {
         deleteLink.addEventListener("click", function(event) {
             event.preventDefault();
             fetch(event.target.href, {method: "DELETE"})
+            // how to make it wait for this action to be done before the next?
+            fetch(BACKEND_URL+"/trees")
                 .then(resp => resp.json())
                 .then(function(json) {
-                    console.log(json)
+                    Tree.displayIndex(json)
                 })
         }) 
     }
