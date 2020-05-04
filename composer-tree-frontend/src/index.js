@@ -92,15 +92,16 @@ class DisplayLink {
 }
 
 class Form { 
-    constructor(fieldsArray, urlEnd, method, title) {
+    constructor(fieldsArray, urlEnd, method, title, classObject) {
         this.fieldsArray = fieldsArray;
         this.urlEnd = urlEnd;
         this.method = method;
         this.title = title;
+        this.classObject = classObject
     }
 
     display() {
-        
+        const formClassObject = this.classObject
         heading.innerHTML = this.title
         content.removeChild(content.childNodes[0])
         const form = document.createElement("FORM")
@@ -132,21 +133,21 @@ class Form {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(Tree.formData(titleInput, descriptionInput))
+                body: JSON.stringify(formClassObject.formData(titleInput, descriptionInput))
                 
             }
             fetch(event.target.action, configObject)
                 .then(resp => resp.json())
                 .then(function(json) {
-                    const newTree = new Tree(json)
-                    newTree.displayShow()
+                    const newInstance = new formClassObject(json)
+                    newInstance.displayShow()
                 })
         })
     }
 }
 
 const indexLink = new NavLink("View your idea trees", "/trees", Tree.displayIndex).display(topNav)
-const treeForm = new Form([["title", "text"], ["description", "text"]], "/trees", "POST", "Create a New Idea Tree")
+const treeForm = new Form([["title", "text"], ["description", "text"]], "/trees", "POST", "Create a New Idea Tree", Tree)
 const newLink = new DisplayLink("Add an Idea Tree", treeForm.display.bind(treeForm)).display(topNav)
 
 
