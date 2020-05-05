@@ -9,8 +9,10 @@ class Tree  {
         this.title = json.title;
         this.description = json.description;
         this.id = json.id; 
+        this.notes = json.notes;
     }
     displayShow() {
+        
         heading.innerHTML = this.title
         content.innerHTML = ''
         const description = document.createElement("p")

@@ -10,7 +10,7 @@ class TreesController < ApplicationController
 
   # GET /trees/1
   def show
-    render json: @tree
+    render json: @tree, include: [:notes]
   end
 
   # POST /trees
