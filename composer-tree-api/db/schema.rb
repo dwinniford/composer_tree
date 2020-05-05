@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_01_160252) do
+ActiveRecord::Schema.define(version: 2020_05_05_123054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "notes", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.boolean "starred", default: false
+    t.integer "parent_note_id"
+    t.integer "user_id"
+    t.integer "tree_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "trees", force: :cascade do |t|
     t.string "title"
