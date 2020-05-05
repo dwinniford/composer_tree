@@ -11,12 +11,12 @@ bouncy = Tree.create(title: "Bouncy melody", description: "a real bouncy kind of
 ballad = Tree.create(title: "Ballad of Pooh", description: "A real sad song for winnie the pooh")
 bunny = Tree.create(title: "Don't cry Bunny RaRa", description: "A lullaby for a stuffed bunny")
 
-blues_note1 = blues.notes.build(title: "try a shuffle groove", description: "changed the rhythm")
-blues_note2 = blues.notes.build(title: "try a shuffle groove", description: "changed the rhythm", parent_note_id: blues_note1.id)
-blues_note3 = blues.notes.build(title: "try a shuffle groove", description: "changed the rhythm", parent_note_id: blues_note1.id)
-blues_note4 = blues.notes.build(title: "try a shuffle groove", description: "changed the rhythm", parent_note_id: blues_note2.id)
-blues_note5 = blues.notes.build(title: "try a shuffle groove", description: "changed the rhythm", parent_note_id: blues_note2.id)
-blues_note6 = blues.notes.build(title: "try a shuffle groove", description: "changed the rhythm", parent_note_id: blues_note3.id)
-blues_note7 = blues.notes.build(title: "try a shuffle groove", description: "changed the rhythm", parent_note_id: blues_note6.id)
-blues_note8 = blues.notes.build(title: "try a shuffle groove", description: "changed the rhythm", parent_note_id: blues_note6.id)
-blues.save 
+Note.delete_all 
+blues_note1 = blues.notes.create(title: "try a shuffle groove", description: "changed the rhythm")
+blues_note2 = blues.notes.create(title: "try a shuffle groove", description: "changed the rhythm", parent_note_id: blues_note1.id)
+blues_note3 = blues.notes.create(title: "try a shuffle groove", description: "changed the rhythm", parent_note_id: blues_note1.id)
+blues_note4 = blues.notes.create(title: "try a shuffle groove", description: "changed the rhythm", parent_note_id: blues_note2.id)
+blues_note5 = blues.notes.create(title: "try a shuffle groove", description: "changed the rhythm", parent_note_id: blues_note2.id)
+blues_note6 = blues.notes.create(title: "try a shuffle groove", description: "changed the rhythm", parent_note_id: blues_note3.id)
+blues_note7 = blues.notes.create(title: "try a shuffle groove", description: "changed the rhythm", parent_note_id: blues_note6.id)
+blues_note8 = blues.notes.create(title: "try a shuffle groove", description: "changed the rhythm", parent_note_id: blues_note6.id)
