@@ -24,9 +24,7 @@ class Tree  {
             treeForm.display(treeInstance)
         })
         editTreeLink.display(content)
-        // const deleteTreeLink = new navLink("delete", "/trees/"+treeInstance.id, function() {
-            
-        // })
+        
         const deleteLink = document.createElement("a")
         deleteLink.href = BACKEND_URL + "/trees/"+treeInstance.id
         deleteLink.innerHTML = "delete" 
@@ -44,9 +42,14 @@ class Tree  {
                         })
                     }
                 })
-            // how to make it wait for this action to be done before the next?
+            
            
         }) 
+        
+        const myNetwork = new Network(this.notes)
+        myNetwork.display()
+        debugger 
+        console.log(myNetwork.noteArray)
     }
     static displayIndex(json) {
         heading.innerHTML = "Your Idea Trees"
@@ -201,33 +204,85 @@ const treeForm = new Form(Tree.fieldsArray(), "/trees", "POST", Tree)
 // refactor form to use Tree class method for title
 const newLink = new DisplayLink("Add an Idea Tree", treeForm.display.bind(treeForm)).display(topNav)
 
+class Network {
+    constructor(noteArray) {
+        this.noteArray = noteArray
+    }
+    
+    // createNodes() { 
+    //     const nodes = 
+    //     this.noteArray.forEach(function(element) {
 
-// create an array with nodes
-const nodes = new vis.DataSet([
-    {id: 1, label: 'Node 1'},
-    {id: 2, label: 'Node 2'},
-    {id: 3, label: 'Node 3'},
-    {id: 4, label: 'Node 4'},
-    {id: 5, label: 'Node 5'}
-]);
+    //     })
+    // }
 
-// create an array with edges
-const edges = new vis.DataSet([
-    {from: 1, to: 3},
-    {from: 1, to: 2},
-    {from: 2, to: 4},
-    {from: 2, to: 5}
-]);
+    // createEdges() {
 
-// create a network
-const container = document.getElementById('mynetwork');
+    // }
 
-// provide the data in the vis format
-const data = {
-    nodes: nodes,
-    edges: edges
-};
-const options = {};
+    display(){
+        // create an array with nodes
+        // have rails api send data in the correct format? only send id and title of note.  click for popup window with full info and recording
+        const nodes = new vis.DataSet([
+            {id: 1, label: 'Node 1'},
+            {id: 2, label: 'Node 2'},
+            {id: 3, label: 'Node 3'},
+            {id: 4, label: 'Node 4'},
+            {id: 5, label: 'Node 5'}
+        ]);
 
-// initialize your network!
-const network = new vis.Network(container, data, options);
+        // create an array with edges
+        const edges = new vis.DataSet([
+            {from: 1, to: 3},
+            {from: 1, to: 2},
+            {from: 2, to: 4},
+            {from: 2, to: 5}
+        ]);
+
+        // create a network
+        // const container = document.getElementById('mynetwork');
+        const container = document.createElement('div')
+        container.id = 'mynetwork'
+        content.appendChild(container)
+
+        // provide the data in the vis format
+        const data = {
+            nodes: nodes,
+            edges: edges
+        };
+        const options = {};
+
+        // initialize your network!
+        const network = new vis.Network(container, data, options);
+    }
+}
+
+// // create an array with nodes
+// const nodes = new vis.DataSet([
+//     {id: 1, label: 'Node 1'},
+//     {id: 2, label: 'Node 2'},
+//     {id: 3, label: 'Node 3'},
+//     {id: 4, label: 'Node 4'},
+//     {id: 5, label: 'Node 5'}
+// ]);
+
+// // create an array with edges
+// const edges = new vis.DataSet([
+//     {from: 1, to: 3},
+//     {from: 1, to: 2},
+//     {from: 2, to: 4},
+//     {from: 2, to: 5}
+// ]);
+
+// // create a network
+// const container = document.getElementById('mynetwork');
+
+// // provide the data in the vis format
+// const data = {
+//     nodes: nodes,
+//     edges: edges
+// };
+// const options = {};
+
+// // initialize your network!
+// const network = new vis.Network(container, data, options);
