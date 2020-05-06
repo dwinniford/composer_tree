@@ -1,5 +1,4 @@
-const overlay = document.querySelector('.overlay')
-const overlayInner = document.querySelector('.overlay-inner')
+
 
 class Note {
     constructor(json) {
@@ -18,4 +17,6 @@ class Note {
         const description = document.querySelector('#overlay-description')
         description.innerHTML = this.description + " - Id: " + this.id 
     }
+
+    
 }

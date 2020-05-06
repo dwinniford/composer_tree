@@ -58,7 +58,7 @@ class Network {
                 .then(function(json) {
                     const note = new Note(json)
                     note.render()
-                    overlay.classList.add('open')
+                    Overlay.open()
                     console.log(note)
                 })
             
