@@ -16,9 +16,6 @@ class Note {
         title.innerHTML = this.title 
         const description = document.querySelector('#overlay-description')
         description.innerHTML = this.description + " - Id: " + this.id 
-        const editButton = document.createElement("button")
-        editButton.innerHTML = "Edit"
-        editButton.id = "editNote"
         editButton.dataset.treeId = this.tree_id
         editButton.dataset.id = this.id 
         console.log(editButton.dataset)
