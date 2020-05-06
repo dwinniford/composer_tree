@@ -46,9 +46,11 @@ class Tree  {
            
         }) 
         
-        const myNetwork = new Network(this.notes)
-        myNetwork.display()
-        console.log(myNetwork.noteArray)
+        const notesNetworkObject = new Network(this.notes)
+        const notesNetworkElement = notesNetworkObject.display()
+        // notesNetworkElement.addNodeListener()
+        console.log(notesNetworkObject.noteArray)
+        console.log(notesNetworkElement)
     }
     static displayIndex(json) {
         heading.innerHTML = "Your Idea Trees"
@@ -185,7 +187,7 @@ class Form {
                 body: JSON.stringify(data)
                 
             }
-            debugger 
+            
             fetch(event.target.action, configObject)
                 .then(resp => resp.json())
                 .then(function(json) {
@@ -250,6 +252,15 @@ class Network {
 
         // initialize your network!
         const network = new vis.Network(container, data, options);
+        // network.on("click", function(event) {
+
+        //     console.log(event.nodes[0])
+        //     // logs note id.  If click on canvas but not a circle logs undefined. if click on line stil undefined.
+        // })
+        this.addNodeListener(network)
+        return network
+    }
+    addNodeListener(network) {
         network.on("click", function(event) {
 
             console.log(event.nodes[0])
