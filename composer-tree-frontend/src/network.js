@@ -32,7 +32,6 @@ class Network {
         const edges = new vis.DataSet(this.createEdgesArray());
 
         // create a network
-        // const container = document.getElementById('mynetwork');
         const container = document.createElement('div')
         container.id = 'mynetwork'
         content.appendChild(container)
@@ -46,21 +45,23 @@ class Network {
 
         // initialize your network!
         const network = new vis.Network(container, data, options);
-        // network.on("click", function(event) {
-
-        //     console.log(event.nodes[0])
-        //     // logs note id.  If click on canvas but not a circle logs undefined. if click on line stil undefined.
-        // })
+       
         this.addNodeListener(network)
         return network
     }
     addNodeListener(network) {
         const treeId = this.parentTreeId 
+        // need the tree id for nested routes
         network.on("click", function(event) {
             fetch(BACKEND_URL+`/trees/${treeId}/notes/${event.nodes[0]}`)
                 .then(resp => resp.json())
-                .then(json => console.log(json))
-            // need the tree id for nested routes
+                .then(function(json) {
+                    const note = new Note(json)
+                    note.render()
+                    overlay.classList.add('open')
+                    console.log(note)
+                })
+            
             console.log(event.nodes[0])
             // logs note id.  If click on canvas but not a circle logs undefined. if click on line stil undefined.
         })

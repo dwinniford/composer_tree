@@ -17,8 +17,3 @@ const newLink = new DisplayLink("Add an Idea Tree", treeForm.display.bind(treeFo
 
 
 
-// class Note {
-//     constructor(json) {
-        
-//     }
-// }
