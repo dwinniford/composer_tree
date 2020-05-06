@@ -208,6 +208,7 @@ const newLink = new DisplayLink("Add an Idea Tree", treeForm.display.bind(treeFo
 class Network {
     constructor(noteArray) {
         this.noteArray = noteArray
+        this.parentTreeId = noteArray[0].tree_id
     }
     
     createAdaptedNoteArray() { 
@@ -261,10 +262,20 @@ class Network {
         return network
     }
     addNodeListener(network) {
+        const treeId = this.parentTreeId 
         network.on("click", function(event) {
-
+            fetch(BACKEND_URL+`/trees/${treeId}/notes/${event.nodes[0]}`)
+                .then(resp => resp.json())
+                .then(json => console.log(json))
+            // need the tree id for nested routes
             console.log(event.nodes[0])
             // logs note id.  If click on canvas but not a circle logs undefined. if click on line stil undefined.
         })
     }
 }
+
+// class Note {
+//     constructor(json) {
+        
+//     }
+// }
