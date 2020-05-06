@@ -19,16 +19,19 @@ class Note {
         const editButton = document.createElement("button")
         editButton.innerHTML = "Edit"
         editButton.id = "editNote"
+        editButton.dataset.treeId = this.tree_id
+        editButton.dataset.id = this.id 
+        console.log(editButton.dataset)
         overlayInner.appendChild(editButton)
-        const editForm = this.renderEditForm()
         editButton.addEventListener("click", function(event) {
-            console.log(editForm)
+           const form = new Form(Note.fieldsArray(), `/trees/${event.target.dataset.treeId}/notes/${event.target.dataset.id}`, "PATCH", Note)
+           console.log(form)
         })
         
     }
 
     renderEditForm() { 
-        return new Form(Note.fieldsArray(), `/trees/${this.tree_id}/notes/${this.id}`, "PATCH", Note)
+        return 
     }
     static fieldsArray() {
         return [["title", "text"], ["description", "text"]]
