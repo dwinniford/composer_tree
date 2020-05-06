@@ -16,7 +16,22 @@ class Note {
         title.innerHTML = this.title 
         const description = document.querySelector('#overlay-description')
         description.innerHTML = this.description + " - Id: " + this.id 
+        const editButton = document.createElement("button")
+        editButton.innerHTML = "Edit"
+        editButton.id = "editNote"
+        overlayInner.appendChild(editButton)
+        const editForm = this.renderEditForm()
+        editButton.addEventListener("click", function(event) {
+            console.log(editForm)
+        })
+        
     }
 
+    renderEditForm() { 
+        return new Form(Note.fieldsArray(), `/trees/${this.tree_id}/notes/${this.id}`, "PATCH", Note)
+    }
+    static fieldsArray() {
+        return [["title", "text"], ["description", "text"]]
+    }
     
 }
