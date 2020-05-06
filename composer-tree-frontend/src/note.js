@@ -13,11 +13,9 @@ class Note {
     }
 
     render() {
-        const title = document.createElement('h1')
+        const title = document.querySelector('#overlay-title')
         title.innerHTML = this.title 
-        const description = document.createElement('p')
-        description.innerHTML = this.description
-        overlayInner.appendChild(title)
-        overlayInner.appendChild(description)
+        const description = document.querySelector('#overlay-description')
+        description.innerHTML = this.description + " - Id: " + this.id 
     }
 }
