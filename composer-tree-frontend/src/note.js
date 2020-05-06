@@ -22,7 +22,8 @@ class Note {
         overlayInner.appendChild(editButton)
         editButton.addEventListener("click", function(event) {
            const form = new Form(Note.fieldsArray(), `/trees/${event.target.dataset.treeId}/notes/${event.target.dataset.id}`, "PATCH", Note)
-           console.log(form)
+           const formElement = form.render()
+           overlayInner.appendChild(formElement)
         })
         
     }

@@ -6,6 +6,33 @@ class Form {
         this.classObject = classObject
     }
 
+    render() {
+        // try with note edit form.  just return the html
+        // have something like below but put it in separate method in note class
+        // heading.innerHTML = this.classObject.newFormTitle()
+        // content.innerHTML = ''
+        const form = document.createElement("FORM")
+        form.action = BACKEND_URL + this.urlEnd
+        this.fieldsArray.forEach(function(element) {
+            const input = document.createElement("INPUT")
+            input.setAttribute("type", element[1])
+            input.id = element[0]
+            const label = document.createElement("LABEL")
+            label.innerHTML = element[0]
+            label.for = element[0]
+            // if (classInstance) {
+            //     input.value = classInstance[element[0]]
+            // }
+            form.appendChild(label)
+            form.appendChild(input)
+        })
+        const submit = document.createElement("button")
+        submit.innerHTML = "Submit"
+        submit.setAttribute("type", "submit")
+        form.appendChild(submit)
+        return form 
+    }
+
     display(classInstance = false) {
         const formClassObject = this.classObject
         heading.innerHTML = this.classObject.newFormTitle()
