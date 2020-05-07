@@ -1,5 +1,5 @@
 const deleteNoteButton = document.querySelector("#delete-note")
-
+const createChildNoteButton = document.querySelector("#create-child-note")
 class Note {
     constructor(json, edgeCount) {
         this.id = json.id 
@@ -22,6 +22,8 @@ class Note {
         // if note does not have a child note display delete button
         deleteNoteButton.dataset.treeId = this.tree_id
         deleteNoteButton.dataset.id = this.id 
+        createChildNoteButton.dataset.treeId = this.tree_id
+        createChildNoteButton.dataset.parentNoteId = this.id
         if (this.edgeCount === 1) {
             deleteNoteButton.classList.add("open")
         } else {
@@ -98,7 +100,16 @@ class Note {
     static fieldsArray() {
         return [["title", "text"], ["description", "text"]]
     }
+    static addCreateChildNoteListener() {
+        createChildNoteButton.addEventListener("click", function(event) {
+           const form = new Form(Note.fieldsArray(), `/trees/${event.target.dataset.treeId}/notes`, "POST", Note)
+           const formElement = form.render()
+           formElement.setAttribute("name", "create-child-note-form")
+           overlayInner.appendChild(formElement)
+        })
+    }
     
 }
 
 Note.addDeleteListener()
+Note.addCreateChildNoteListener()
