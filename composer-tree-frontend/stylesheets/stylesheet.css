@@ -29,5 +29,5 @@ main {
 }
 
 .delete-button.open {
-    display: block
+    display: inline
 }

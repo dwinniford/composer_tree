@@ -1,5 +1,7 @@
 const deleteNoteButton = document.querySelector("#delete-note")
 const createChildNoteButton = document.querySelector("#create-child-note")
+const editButton = document.querySelector("#edit-note")
+
 class Note {
     constructor(json, edgeCount) {
         this.id = json.id 
@@ -31,13 +33,7 @@ class Note {
         }
         console.log(editButton.dataset)
         overlayInner.appendChild(editButton)
-        editButton.addEventListener("click", function(event) {
-           const form = new Form(Note.fieldsArray(), `/trees/${event.target.dataset.treeId}/notes/${event.target.dataset.id}`, "PATCH", Note)
-           const formElement = form.render()
-           formElement.setAttribute("name", "edit-note-form")
-           overlayInner.appendChild(formElement)
-          Note.addEditFormListener() 
-        })     
+             
     }
 
     static addEditFormListener() {
@@ -110,8 +106,19 @@ class Note {
            overlayDescription.innerHTML = ''
         })
     }
+
+    static addEditButtonListener() {
+        editButton.addEventListener("click", function(event) {
+            const form = new Form(Note.fieldsArray(), `/trees/${event.target.dataset.treeId}/notes/${event.target.dataset.id}`, "PATCH", Note)
+            const formElement = form.render()
+            formElement.setAttribute("name", "edit-note-form")
+            overlayInner.appendChild(formElement)
+           Note.addEditFormListener() 
+         })
+    }
     
 }
 
 Note.addDeleteListener()
 Note.addCreateChildNoteListener()
+Note.addEditButtonListener()
