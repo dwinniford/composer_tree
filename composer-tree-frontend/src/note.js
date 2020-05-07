@@ -78,13 +78,16 @@ class Note {
             fetch(BACKEND_URL + `/trees/${event.target.dataset.treeId}/notes/${event.target.dataset.id}`, {method: "DELETE"})
                 .then(function(response){
                     console.log(response.ok)
-                    // if (response.ok) {
-                    //     fetch(BACKEND_URL+"/trees")
-                    //     .then(resp => resp.json())
-                    //     .then(function(json) {
-                    //         Tree.displayIndex(json)
-                    //     })
-                    // }
+                    if (response.ok) {
+                        fetch(BACKEND_URL+`/trees/${deleteNoteButton.dataset.treeId}`)
+                            .then(resp => resp.json())
+                            .then(function(json) {
+                                const tree = new Tree(json)
+                                tree.displayShow()
+                            })
+                        Overlay.close()
+                        
+                    }
                 })
         })
     }
