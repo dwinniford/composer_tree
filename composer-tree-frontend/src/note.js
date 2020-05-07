@@ -26,7 +26,7 @@ class Note {
         deleteNoteButton.dataset.id = this.id 
         createChildNoteButton.dataset.treeId = this.tree_id
         createChildNoteButton.dataset.parentNoteId = this.id
-        if (this.edgeCount === 1) {
+        if (this.edgeCount === 1 || this.edgeCount === 0) {
             deleteNoteButton.classList.add("open")
         } else {
             deleteNoteButton.classList.remove("open")
@@ -132,7 +132,6 @@ class Note {
                 },
                 body: JSON.stringify(data)
             }
-            debugger 
             fetch(event.currentTarget.action, configObject)
                 .then(resp => resp.json())
                 .then(function(json) {
