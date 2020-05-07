@@ -1,4 +1,4 @@
-
+const deleteNoteButton = document.querySelector("#delete-note")
 
 class Note {
     constructor(json, edgeCount) {
@@ -20,11 +20,12 @@ class Note {
         editButton.dataset.treeId = this.tree_id
         editButton.dataset.id = this.id 
         // if note does not have a child note display delete button
-        const deleteButton = overlayInner.querySelector("#delete-note")
+        deleteNoteButton.dataset.treeId = this.tree_id
+        deleteNoteButton.dataset.id = this.id 
         if (this.edgeCount === 1) {
-            deleteButton.classList.add("open")
+            deleteNoteButton.classList.add("open")
         } else {
-            deleteButton.classList.remove("open")
+            deleteNoteButton.classList.remove("open")
         }
         console.log(editButton.dataset)
         overlayInner.appendChild(editButton)
@@ -72,6 +73,22 @@ class Note {
         })
     }
 
+    static addDeleteListener() {
+        deleteNoteButton.addEventListener("click", function(event) {
+            fetch(BACKEND_URL + `/trees/${event.target.dataset.treeId}/notes/${event.target.dataset.id}`, {method: "DELETE"})
+                .then(function(response){
+                    console.log(response.ok)
+                    // if (response.ok) {
+                    //     fetch(BACKEND_URL+"/trees")
+                    //     .then(resp => resp.json())
+                    //     .then(function(json) {
+                    //         Tree.displayIndex(json)
+                    //     })
+                    // }
+                })
+        })
+    }
+
     renderEditForm() { 
         return 
     }
@@ -80,3 +97,5 @@ class Note {
     }
     
 }
+
+Note.addDeleteListener()
