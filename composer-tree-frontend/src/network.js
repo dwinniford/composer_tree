@@ -53,10 +53,12 @@ class Network {
         const treeId = this.parentTreeId 
         // need the tree id for nested routes
         network.on("click", function(event) {
+            console.log(event.edges.length) // returns an array according to number of connections
+            const eventEdgeCount = event.edges.length
             fetch(BACKEND_URL+`/trees/${treeId}/notes/${event.nodes[0]}`)
                 .then(resp => resp.json())
                 .then(function(json) {
-                    const note = new Note(json)
+                    const note = new Note(json, eventEdgeCount)
                     note.render()
                     Overlay.open()
                     console.log(note)

@@ -1,7 +1,7 @@
 
 
 class Note {
-    constructor(json) {
+    constructor(json, edgeCount) {
         this.id = json.id 
         this.title = json.title 
         this.description = json.description
@@ -9,6 +9,7 @@ class Note {
         this.parent_note_id = json.parent_note_id
         this.tree_id = json.tree_id
         this.user_id = json.user_id
+        this.edgeCount = edgeCount
     }
 
     render() {
@@ -18,6 +19,10 @@ class Note {
         description.innerHTML = this.description + " - Id: " + this.id 
         editButton.dataset.treeId = this.tree_id
         editButton.dataset.id = this.id 
+        // if note does not have a child note display delete button
+        if (this.edgeCount === 1) {
+            
+        }
         console.log(editButton.dataset)
         overlayInner.appendChild(editButton)
         editButton.addEventListener("click", function(event) {
