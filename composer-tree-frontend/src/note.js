@@ -49,6 +49,11 @@ class Note {
                 .then(resp => resp.json())
                 .then(function(json) {
                     console.log(json)
+                    editNoteForm.remove()
+                    
+                    // overlayInner.overlay-title.innerHTML = json.title
+                    // overlayInner.overlay-description.innerHTML = json.description
+                    
                 })
             
         })
