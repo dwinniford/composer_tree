@@ -50,10 +50,15 @@ class Note {
                 .then(function(json) {
                     console.log(json)
                     editNoteForm.remove()
-                    
                     overlayInner.querySelector("#overlay-title").innerHTML = json.title
                     overlayInner.querySelector("#overlay-description").innerHTML = json.description
-                    
+                    fetch(`${BACKEND_URL}/trees/${json.tree_id}`)
+                        .then(resp => resp.json())
+                        .then(function(json) {
+                            const tree = new Tree(json)
+                            tree.displayShow()
+                        })
+
                 })
             
         })

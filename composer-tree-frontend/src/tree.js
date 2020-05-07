@@ -42,9 +42,8 @@ class Tree  {
         
         const notesNetworkObject = new Network(this.notes)
         const notesNetworkElement = notesNetworkObject.display()
-        // notesNetworkElement.addNodeListener()
         console.log(notesNetworkObject.noteArray)
-        console.log(notesNetworkElement)
+        console.log(notesNetworkElement.findNode(13))
     }
     static displayIndex(json) {
         heading.innerHTML = "Your Idea Trees"
