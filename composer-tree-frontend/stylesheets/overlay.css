@@ -15,6 +15,10 @@
     justify-items: center;
 }
 
+.delete-button {
+    display: none
+}
+
 .overlay-inner {
     background: white;
     width: 400px;
