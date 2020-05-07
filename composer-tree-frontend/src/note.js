@@ -106,6 +106,8 @@ class Note {
            const formElement = form.render()
            formElement.setAttribute("name", "create-child-note-form")
            overlayInner.appendChild(formElement)
+           overlayTitle.innerHTML = "Create a Child Note"
+           overlayDescription.innerHTML = ''
         })
     }
     
