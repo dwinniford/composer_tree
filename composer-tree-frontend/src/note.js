@@ -20,8 +20,11 @@ class Note {
         editButton.dataset.treeId = this.tree_id
         editButton.dataset.id = this.id 
         // if note does not have a child note display delete button
+        const deleteButton = overlayInner.querySelector("#delete-note")
         if (this.edgeCount === 1) {
-            
+            deleteButton.classList.add("open")
+        } else {
+            deleteButton.classList.remove("open")
         }
         console.log(editButton.dataset)
         overlayInner.appendChild(editButton)
