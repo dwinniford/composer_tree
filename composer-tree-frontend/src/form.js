@@ -17,6 +17,7 @@ class Form {
             const input = document.createElement("INPUT")
             input.setAttribute("type", element[1])
             input.id = element[0]
+            input.setAttribute("name", element[0])
             const label = document.createElement("LABEL")
             label.innerHTML = element[0]
             label.for = element[0]
