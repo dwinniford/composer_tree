@@ -51,8 +51,8 @@ class Note {
                     console.log(json)
                     editNoteForm.remove()
                     
-                    // overlayInner.overlay-title.innerHTML = json.title
-                    // overlayInner.overlay-description.innerHTML = json.description
+                    overlayInner.querySelector("#overlay-title").innerHTML = json.title
+                    overlayInner.querySelector("#overlay-description").innerHTML = json.description
                     
                 })
             
