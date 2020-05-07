@@ -19,13 +19,11 @@ class NotesController < ApplicationController
     @note = @tree.notes.build(note_params)
 
     if @note.save
-      render json: @note
-      # , status: :created, location: @note
-      # what does the above code do
+      render json: @note, status: :created, location: tree_note_path(@tree, @note)
+      # what does the above code do? location takes a route helper. was just @note. needs nested route helper
       # 500 Internal Server Error in 126ms (ActiveRecord: 2.0ms | Allocations: 38385)
       # NoMethodError (undefined method `note_url' for #<NotesController:0x00007fffe88c5240>):  
       # seems like the scaffold created some methods that don't know notes is a nested resource
-      end
     else
       render json: @note.errors, status: :unprocessable_entity
     end
