@@ -15,10 +15,17 @@ class NotesController < ApplicationController
 
   # POST /notes
   def create
-    @note = Note.new(note_params)
+    @tree = Tree.find(params[:tree_id])
+    @note = @tree.notes.build(note_params)
 
     if @note.save
-      render json: @note, status: :created, location: @note
+      render json: @note
+      # , status: :created, location: @note
+      # what does the above code do
+      # 500 Internal Server Error in 126ms (ActiveRecord: 2.0ms | Allocations: 38385)
+      # NoMethodError (undefined method `note_url' for #<NotesController:0x00007fffe88c5240>):  
+      # seems like the scaffold created some methods that don't know notes is a nested resource
+      end
     else
       render json: @note.errors, status: :unprocessable_entity
     end

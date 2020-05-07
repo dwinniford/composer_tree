@@ -90,9 +90,7 @@ class Note {
         })
     }
 
-    renderEditForm() { 
-        return 
-    }
+    
     static fieldsArray() {
         return [["title", "text"], ["description", "text"]]
     }
@@ -104,6 +102,7 @@ class Note {
            overlayInner.appendChild(formElement)
            overlayTitle.innerHTML = "Create a Child Note"
            overlayDescription.innerHTML = ''
+        //    add submit listener as static method Note.addChildNoteFormListener
         })
     }
 
@@ -115,6 +114,41 @@ class Note {
             overlayInner.appendChild(formElement)
            Note.addEditFormListener() 
          })
+    }
+    static addNewRootNoteFormListener() {
+        const newRootNoteForm = document.querySelector('[name="create-root-note-form"]')
+        newRootNoteForm.addEventListener('submit', function(event) {
+            event.preventDefault()
+            console.log(event.currentTarget)
+            const data = { note: {
+                title: event.currentTarget.title.value,
+                description: event.currentTarget.description.value
+                }  
+            }
+            const configObject = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }
+            debugger 
+            fetch(event.currentTarget.action, configObject)
+                .then(resp => resp.json())
+                .then(function(json) {
+                    console.log(json)
+                    newRootNoteForm.remove()
+                    
+                    fetch(`${BACKEND_URL}/trees/${json.tree_id}`)
+                        .then(resp => resp.json())
+                        .then(function(json) {
+                            const tree = new Tree(json)
+                            tree.displayShow()
+                        })
+
+                })
+            
+        })
     }
     
 }

@@ -39,11 +39,26 @@ class Tree  {
             
            
         }) 
+        if (this.notes.length === 0) {
+            const newRootNoteButton = document.createElement("button")
+            newRootNoteButton.innerHTML = "Add a note"
+            newRootNoteButton.dataset.treeId = this.id 
+            content.appendChild(newRootNoteButton)
+            newRootNoteButton.addEventListener('click', function(event) {
+                const form = new Form(Note.fieldsArray(), `/trees/${event.target.dataset.treeId}/notes`, "POST", Note)
+                const formElement = form.render()
+                formElement.setAttribute("name", "create-root-note-form")
+                content.appendChild(formElement)
+                Note.addNewRootNoteFormListener()
+            })
+        } else {
+            const notesNetworkObject = new Network(this.notes)
+            const notesNetworkElement = notesNetworkObject.display()
+            console.log(notesNetworkObject.noteArray)
+            console.log(notesNetworkElement.findNode(13))
+        }
         
-        const notesNetworkObject = new Network(this.notes)
-        const notesNetworkElement = notesNetworkObject.display()
-        console.log(notesNetworkObject.noteArray)
-        console.log(notesNetworkElement.findNode(13))
+        
     }
     static displayIndex(json) {
         heading.innerHTML = "Your Idea Trees"
