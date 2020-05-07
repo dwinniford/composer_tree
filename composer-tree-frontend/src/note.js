@@ -25,29 +25,33 @@ class Note {
            const formElement = form.render()
            formElement.setAttribute("name", "edit-note-form")
            overlayInner.appendChild(formElement)
-           formElement.addEventListener('submit', function(event) {
-                event.preventDefault()
-                console.log(event.currentTarget)
-                const data = {
-                    title: event.currentTarget.title.value,
-                    description: event.currentTarget.description.value
-                }
-                const configObject = {
-                    method: "PATCH",
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                }
-                fetch(event.currentTarget.action, configObject)
-                    .then(resp => resp.json())
-                    .then(function(json) {
-                        console.log(json)
-                    })
-                
-            })
+          Note.addEditFormListener() 
+        })     
+    }
+
+    static addEditFormListener() {
+        const editNoteForm = document.querySelector('[name="edit-note-form"]')
+        editNoteForm.addEventListener('submit', function(event) {
+            event.preventDefault()
+            console.log(event.currentTarget)
+            const data = {
+                title: event.currentTarget.title.value,
+                description: event.currentTarget.description.value
+            }
+            const configObject = {
+                method: "PATCH",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }
+            fetch(event.currentTarget.action, configObject)
+                .then(resp => resp.json())
+                .then(function(json) {
+                    console.log(json)
+                })
+            
         })
-        
     }
 
     renderEditForm() { 
