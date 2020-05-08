@@ -78,8 +78,7 @@ class Tree  {
             })
 
         });
-        content.innerHTML = ''
-        content.appendChild(list)
+        sidebar.appendChild(list)
     }
     static formData(title, description) {
         return {tree: {title: title, description: description}}
