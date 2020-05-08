@@ -34,7 +34,7 @@ class Network {
         // create a network
         const container = document.createElement('div')
         container.id = 'mynetwork'
-        content.appendChild(container)
+        networkContainer.appendChild(container)
 
         // provide the data in the vis format
         const data = {

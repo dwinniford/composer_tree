@@ -2,7 +2,10 @@ const BACKEND_URL = 'http://localhost:3000';
 const content = document.querySelector(".content")
 const topNav = document.querySelector("NAV")
 const heading = document.querySelector('h1')
+const contentDescription = document.querySelector(".content-description")
 const sidebar = document.querySelector('.sidebar')
+const contentLinks = document.querySelector('.content-links')
+const networkContainer = document.querySelector('.network-container')
 
 
 

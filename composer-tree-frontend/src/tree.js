@@ -6,23 +6,19 @@ class Tree  {
         this.notes = json.notes;
     }
     displayShow() {
-        
         heading.innerHTML = this.title
-        content.innerHTML = ''
-        const description = document.createElement("p")
-        description.innerHTML = this.description
-        content.appendChild(description)
+        contentDescription.innerHTML = this.description
         const treeInstance = this 
         const editTreeLink = new DisplayLink("edit", function(){
             const treeForm = new Form(Tree.fieldsArray(), "/trees/"+treeInstance.id, "PATCH", Tree)
             treeForm.display(treeInstance)
         })
-        editTreeLink.display(content)
+        editTreeLink.display(contentLinks)
         
         const deleteLink = document.createElement("a")
         deleteLink.href = BACKEND_URL + "/trees/"+treeInstance.id
         deleteLink.innerHTML = "delete" 
-        content.appendChild(deleteLink)
+        contentLinks.appendChild(deleteLink)
         deleteLink.addEventListener("click", function(event) {
             event.preventDefault();
             fetch(event.target.href, {method: "DELETE"})
@@ -54,8 +50,6 @@ class Tree  {
         } else {
             const notesNetworkObject = new Network(this.notes)
             const notesNetworkElement = notesNetworkObject.display()
-            console.log(notesNetworkObject.noteArray)
-            console.log(notesNetworkElement.findNode(13))
         }
         
         
@@ -82,8 +76,8 @@ class Tree  {
             })
 
         });
-        sidebar.appendChild(list)
     }
+
     static formData(title, description) {
         return {tree: {title: title, description: description}}
     }
