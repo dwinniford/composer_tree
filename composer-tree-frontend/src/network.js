@@ -52,7 +52,7 @@ class Network {
     addNodeListener(network) {
         const treeId = this.parentTreeId 
         // need the tree id for nested routes
-        network.on("click", function(event) {
+        network.on("selectNode", function(event) {
             console.log(event.edges.length) // returns an array according to number of connections
             const eventEdgeCount = event.edges.length
             fetch(BACKEND_URL+`/trees/${treeId}/notes/${event.nodes[0]}`)
