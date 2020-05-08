@@ -155,6 +155,10 @@ class Note {
                 const form = new Form(Note.fieldsArray(), `/trees/${event.target.dataset.treeId}/notes/${event.target.dataset.id}`, "PATCH", Note)
                 const formElement = form.render()
                 formElement.setAttribute("name", "edit-note-form")
+                formElement.title.value = overlayTitle.innerHTML
+                formElement.description.value = overlayDescription.innerHTML
+                overlayTitle.innerHTML = "Edit Note"
+                overlayDescription.innerHTML = ""
                 overlayInner.appendChild(formElement)
                 Note.addEditFormListener() 
             }
