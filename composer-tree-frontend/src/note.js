@@ -131,6 +131,16 @@ class Note {
                 .then(resp => resp.json())
                 .then(function(json) {
                     console.log(json)
+                    form.remove()
+                    overlayInner.querySelector("#overlay-title").innerHTML = json.title
+                    overlayInner.querySelector("#overlay-description").innerHTML = json.description
+                    fetch(`${BACKEND_URL}/trees/${json.tree_id}`)
+                        .then(resp => resp.json())
+                        .then(function(json) {
+                            const tree = new Tree(json)
+                            tree.displayShow()
+                        })
+                    // render canvas and close overlay
                 })
         })
     }
