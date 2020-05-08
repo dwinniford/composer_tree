@@ -8,6 +8,7 @@ class Tree  {
     displayShow() {
         heading.innerHTML = this.title
         contentDescription.innerHTML = this.description
+        contentLinks.innerHTML = ''
         const treeInstance = this 
         const editTreeLink = new DisplayLink("edit", function(){
             const treeForm = new Form(Tree.fieldsArray(), "/trees/"+treeInstance.id, "PATCH", Tree)
@@ -18,6 +19,7 @@ class Tree  {
         const deleteLink = document.createElement("a")
         deleteLink.href = BACKEND_URL + "/trees/"+treeInstance.id
         deleteLink.innerHTML = "delete" 
+        deleteLink.classList.add("blue-button")
         contentLinks.appendChild(deleteLink)
         deleteLink.addEventListener("click", function(event) {
             event.preventDefault();
