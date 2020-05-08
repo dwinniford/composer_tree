@@ -127,13 +127,10 @@ class Note {
                 body: JSON.stringify(data)
             }
             fetch(event.target.action, configObject)
-                .then(function(resp) {
-                    console.log(resp)
-                    return resp.json()
-                } )
+                .then(resp => resp.json())
                 .then(function(json) {
-                    console.log(json)
                     form.remove()
+                    overlayButtons.classList.remove('close')
                     overlayInner.querySelector("#overlay-title").innerHTML = json.title
                     overlayInner.querySelector("#overlay-description").innerHTML = json.description
                     fetch(`${BACKEND_URL}/trees/${json.tree_id}`)
@@ -166,7 +163,7 @@ class Note {
             
          })
     }
-    static addNewRootNoteFormListener() {
+    static addRootNoteFormListener() {
         const newRootNoteForm = document.querySelector('[name="create-root-note-form"]')
         newRootNoteForm.addEventListener('submit', function(event) {
             event.preventDefault()

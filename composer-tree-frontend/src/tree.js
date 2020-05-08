@@ -49,7 +49,7 @@ class Tree  {
                 const formElement = form.render()
                 formElement.setAttribute("name", "create-root-note-form")
                 content.appendChild(formElement)
-                Note.addNewRootNoteFormListener()
+                Note.addRootNoteFormListener()
             })
         } else {
             const notesNetworkObject = new Network(this.notes)
