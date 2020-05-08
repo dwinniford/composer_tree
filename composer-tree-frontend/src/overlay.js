@@ -4,6 +4,7 @@ const overlayClose = overlay.querySelector(".close")
 // const editButton = overlay.querySelector("#edit-note")
 const overlayTitle = overlayInner.querySelector("#overlay-title")
 const overlayDescription = overlayInner.querySelector("#overlay-description")
+const overlayButtons = document.querySelector(".overlay-buttons")
 
 
 class Overlay {

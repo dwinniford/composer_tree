@@ -32,6 +32,9 @@
     grid-gap: 5px;
     
 }
+.overlay-buttons.close {
+    display: none 
+}
 
 .overlay-button {
     /* background: none;

@@ -92,7 +92,7 @@ class Note {
     static fieldsArray() {
         return [["title", "text"], ["description", "text"]]
     }
-    static addCreateChildNoteListener() {
+    static addCreateButtonListener() {
         createChildNoteButton.addEventListener("click", function(event) {
            const form = new Form(Note.fieldsArray(), `/trees/${event.target.dataset.treeId}/notes`, "POST", Note)
            const formElement = form.render()
@@ -105,6 +105,7 @@ class Note {
            overlayInner.appendChild(formElement)
            overlayTitle.innerHTML = "Create a Child Note"
            overlayDescription.innerHTML = ''
+           overlayButtons.classList.add("close")
            Note.addChildNoteFormListener()
         })
     }
@@ -203,5 +204,5 @@ class Note {
 }
 
 Note.addDeleteListener()
-Note.addCreateChildNoteListener()
+Note.addCreateButtonListener()
 Note.addEditButtonListener()
