@@ -21,7 +21,15 @@
     background: white;
     width: 400px;
     padding: 20px;
+    display: grid;
+    grid-template-rows: auto 1fr;
   }
+
+.overlay-buttons {
+    grid-row: -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+}
 
 .close {
     background: none;

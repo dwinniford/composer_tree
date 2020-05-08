@@ -18,7 +18,7 @@ class Note {
         const title = document.querySelector('#overlay-title')
         title.innerHTML = this.title 
         const description = document.querySelector('#overlay-description')
-        description.innerHTML = this.description + " - Id: " + this.id 
+        description.innerHTML = this.description 
         editButton.dataset.treeId = this.tree_id
         editButton.dataset.id = this.id 
         // if note does not have a child note display delete button
@@ -31,9 +31,7 @@ class Note {
         } else {
             deleteNoteButton.classList.remove("open")
         }
-        console.log(editButton.dataset)
-        overlayInner.appendChild(editButton)
-             
+                    
     }
 
     static addEditFormListener() {
@@ -140,7 +138,6 @@ class Note {
                             const tree = new Tree(json)
                             tree.displayShow()
                         })
-                    // render canvas and close overlay
                 })
         })
     }
