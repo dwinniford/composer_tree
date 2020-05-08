@@ -126,7 +126,10 @@ class Note {
                 body: JSON.stringify(data)
             }
             fetch(event.target.action, configObject)
-                .then(resp => resp.json())
+                .then(function(resp) {
+                    console.log(resp)
+                    return resp.json()
+                } )
                 .then(function(json) {
                     console.log(json)
                     form.remove()
@@ -144,11 +147,18 @@ class Note {
 
     static addEditButtonListener() {
         editButton.addEventListener("click", function(event) {
-            const form = new Form(Note.fieldsArray(), `/trees/${event.target.dataset.treeId}/notes/${event.target.dataset.id}`, "PATCH", Note)
-            const formElement = form.render()
-            formElement.setAttribute("name", "edit-note-form")
-            overlayInner.appendChild(formElement)
-           Note.addEditFormListener() 
+            if (!document.querySelector('[name="edit-note-form"]')) {
+                const createForm = document.querySelector('[name="create-child-note-form"]')
+                if (createForm) {
+                    createForm.remove()
+                }
+                const form = new Form(Note.fieldsArray(), `/trees/${event.target.dataset.treeId}/notes/${event.target.dataset.id}`, "PATCH", Note)
+                const formElement = form.render()
+                formElement.setAttribute("name", "edit-note-form")
+                overlayInner.appendChild(formElement)
+                Note.addEditFormListener() 
+            }
+            
          })
     }
     static addNewRootNoteFormListener() {
