@@ -61,13 +61,17 @@ class Tree  {
         
     }
     static displayIndex(json) {
-        heading.innerHTML = "Your Idea Trees"
-        const list = document.createElement('ul')
+        heading.innerHTML = ""
+        const sidebarHeading = document.createElement("h3")
+        sidebarHeading.innerHTML = "Your Idea Trees"
+        sidebarHeading.classList.add("sidebar-heading")
+        sidebar.appendChild(sidebarHeading)
         json.forEach(element => {
-            const item = document.createElement('li')
+            const item = document.createElement('button')
             item.innerHTML = element.title
             item.setAttribute("data-id", element.id )
-            list.appendChild(item)
+            item.classList.add("blue-button")
+            sidebar.appendChild(item)
             item.addEventListener("click", function(event) {
                 fetch(`${BACKEND_URL}/trees/${parseInt(event.target.getAttribute("data-id"))}`)
                     .then(resp => resp.json())
