@@ -99,10 +99,39 @@ class Note {
            const form = new Form(Note.fieldsArray(), `/trees/${event.target.dataset.treeId}/notes`, "POST", Note)
            const formElement = form.render()
            formElement.setAttribute("name", "create-child-note-form")
+           const parentNoteInput = document.createElement('input')
+           parentNoteInput.type = "hidden"
+           parentNoteInput.value = event.target.dataset.parentNoteId
+           parentNoteInput.setAttribute("name", "parentNoteId")
+           formElement.appendChild(parentNoteInput)
            overlayInner.appendChild(formElement)
            overlayTitle.innerHTML = "Create a Child Note"
            overlayDescription.innerHTML = ''
-        //    add submit listener as static method Note.addChildNoteFormListener
+           Note.addChildNoteFormListener()
+        })
+    }
+    static addChildNoteFormListener() {
+        const form = overlay.querySelector('[name="create-child-note-form"]')
+        
+        form.addEventListener('submit', function(event) {
+            event.preventDefault()
+            const data = {note: {
+                title: event.target.title.value,
+                description: event.target.description.value,
+                parent_note_id: parseInt(event.target.parentNoteId.value) 
+            }}
+            const configObject = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }
+            fetch(event.target.action, configObject)
+                .then(resp => resp.json())
+                .then(function(json) {
+                    console.log(json)
+                })
         })
     }
 
