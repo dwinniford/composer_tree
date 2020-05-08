@@ -7,6 +7,7 @@ class DisplayLink {
     }
     display(parent) {
         const link = document.createElement("a")
+        link.classList.add("blue-button")
         link.innerHTML = this.text 
         parent.appendChild(link)
         const linkCallback = this.callback

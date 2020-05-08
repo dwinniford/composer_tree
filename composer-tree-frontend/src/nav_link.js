@@ -7,6 +7,7 @@ class NavLink {
 
     display(parent) {
         const link = document.createElement("a")
+        link.classList.add("blue-button")
         link.href = BACKEND_URL + this.urlEnd
         link.innerHTML = this.text 
         parent.appendChild(link)
