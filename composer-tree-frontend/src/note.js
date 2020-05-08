@@ -94,6 +94,10 @@ class Note {
     }
     static addCreateButtonListener() {
         createChildNoteButton.addEventListener("click", function(event) {
+            const editForm = document.querySelector('[name="edit-note-form"]')
+           if (editForm) {
+               editForm.remove()
+           }
            const form = new Form(Note.fieldsArray(), `/trees/${event.target.dataset.treeId}/notes`, "POST", Note)
            const formElement = form.render()
            formElement.setAttribute("name", "create-child-note-form")
@@ -103,7 +107,7 @@ class Note {
            parentNoteInput.setAttribute("name", "parentNoteId")
            formElement.appendChild(parentNoteInput)
            overlayInner.appendChild(formElement)
-           overlayTitle.innerHTML = "Create a Child Note"
+           overlayTitle.innerHTML = "Create a Branch Note"
            overlayDescription.innerHTML = ''
            overlayButtons.classList.add("close")
            Note.addChildNoteFormListener()
