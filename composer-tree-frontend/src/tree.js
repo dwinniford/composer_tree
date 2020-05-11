@@ -34,7 +34,9 @@ class Tree  {
         contentLinks.appendChild(deleteLink)
         deleteLink.addEventListener("click", function(event) {
             event.preventDefault();
-            fetch(event.target.href, {method: "DELETE"})
+            const r = confirm("Delete Tree and all notes?")
+            if (r) {
+                fetch(event.target.href, {method: "DELETE"})
                 .then(function(response){
                     console.log(response.ok)
                     if (response.ok) {
@@ -46,9 +48,9 @@ class Tree  {
                         })
                     }
                 })
-            
-           
+            }
         }) 
+        
         if (this.notes === undefined || this.notes.length === 0 ) {
             const newRootNoteButton = document.createElement("button")
             newRootNoteButton.innerHTML = "Add a note"
