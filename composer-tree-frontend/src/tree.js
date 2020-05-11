@@ -48,7 +48,7 @@ class Tree  {
             
            
         }) 
-        if (this.notes.length === 0) {
+        if (this.notes === undefined || this.notes.length === 0 ) {
             const newRootNoteButton = document.createElement("button")
             newRootNoteButton.innerHTML = "Add a note"
             newRootNoteButton.dataset.treeId = this.id 

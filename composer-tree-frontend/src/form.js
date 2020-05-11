@@ -89,6 +89,7 @@ class Form {
             fetch(event.target.action, configObject)
                 .then(resp => resp.json())
                 .then(function(json) {
+                    console.log(json)
                     const newInstance = new formClassObject(json)
                     newInstance.displayShow()
                 }).catch(function(errors) {
