@@ -62,6 +62,30 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                 chunks = [];
                 const audioURL = window.URL.createObjectURL(blob);
                 audio.src = audioURL;
+                const treeId = parseInt(editButton.dataset.treeId) 
+                const noteId = parseInt(editButton.dataset.id) 
+
+                function createFileFromBlob() {
+                    const file = new File([blob], `audio${noteId}.ogg`, {type: 'audio/ogg'})
+                    return file 
+                }
+
+                function saveFile(event) {
+                    const file = createFileFromBlob()
+                    const formData = new FormData()
+                    formData.append('id', noteId)
+                    formData.append('audio_file', file)
+                    
+                    fetch(BACKEND_URL + `/trees/${treeId}/notes/${noteId}`, {
+                        method: "PATCH",
+                        body: formData
+                    })
+                        .then(message => {
+                            console.log(message)
+                        })
+                }
+
+                saveAudioButton.addEventListener("click", saveFile)
               
                 deleteAudioButton.onclick = function(e) {
                   let evtTgt = e.target;
