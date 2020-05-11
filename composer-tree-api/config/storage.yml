@@ -7,12 +7,12 @@ local:
   root: <%= Rails.root.join("storage") %>
 
   # not sure if this is necessary since i set up the keys in the env file
-# amazon:
-#   service: S3
-#   access_key_id: AWS_ACCESS_KEY_ID
-#   secret_access_key: AWS_SECRET_ACCESS_KEY
-#   bucket: ""
-#   region: "" # e.g. 'us-east-1'
+amazon:
+  service: S3
+  access_key_id: ENV['AWS_ACCESS_KEY_ID']
+  secret_access_key: ['AWS_SECRET_ACCESS_KEY']
+  bucket: "composer-audio"
+  region: 'us-east-2'
 
 # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 # amazon:
