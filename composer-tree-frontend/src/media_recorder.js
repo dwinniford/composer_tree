@@ -41,16 +41,13 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
             mediaRecorder.onstop = function(e) {
                 console.log("recorder stopped");
               
-                const clipName = overlayTitle.innerHTML
-                const clipLabel = document.createElement('p');
                 const audio = document.createElement('audio');
                 const deleteAudioButton = document.createElement('button');
                 audio.setAttribute('controls', '');
                 deleteAudioButton.innerHTML = "Delete Audio";
-                clipLabel.innerHTML = clipName;
+                deleteAudioButton.classList.add("blue-button")
               
                 clipContainer.appendChild(audio);
-                clipContainer.appendChild(clipLabel);
                 clipContainer.appendChild(deleteAudioButton);
               
                 const blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
