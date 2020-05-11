@@ -23,6 +23,7 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                 mediaRecorder.start()
                 console.log(mediaRecorder.state)
                 console.log("recorder started")
+                recordButton.classList.add('recording')
             })
             
             stopRecordButton.addEventListener("click", function(event) {
@@ -31,6 +32,7 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                 mediaRecorder.stop()
                 console.log(mediaRecorder.state)
                 console.log("recorder stopped")
+                recordButton.classList.remove('recording')
             })
 
             let chunks = [];

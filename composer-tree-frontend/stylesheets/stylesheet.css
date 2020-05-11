@@ -49,6 +49,10 @@ main {
     -webkit-appearance: none;
     -moz-appearance: none;
 }
+.blue-button.recording {
+    background: #FFFF33;
+    color: black;
+}
 
 .content-container {
     display: grid;
