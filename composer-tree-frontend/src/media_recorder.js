@@ -73,9 +73,10 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                 function saveFile(event) {
                     const file = createFileFromBlob()
                     const formData = new FormData()
-                    formData.append('id', noteId)
-                    formData.append('audio_file', file)
-                    
+                    // formData.append('id', noteId)
+                    formData.append('note[audio_file]', file)
+                    // console.log(JSON.stringify({ note: {audio_file: file}}))
+                    // JSON.stringify does not work with the file
                     fetch(BACKEND_URL + `/trees/${treeId}/notes/${noteId}`, {
                         method: "PATCH",
                         body: formData
