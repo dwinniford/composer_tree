@@ -13,6 +13,7 @@ class Tree  {
         networkContainer.innerHTML = ''
     }
     displayShow() {
+        Tree.clearContent()
         heading.innerHTML = this.title
         contentDescription.innerHTML = this.description
         contentLinks.innerHTML = ''
@@ -52,6 +53,7 @@ class Tree  {
             const newRootNoteButton = document.createElement("button")
             newRootNoteButton.innerHTML = "Add a note"
             newRootNoteButton.dataset.treeId = this.id 
+            newRootNoteButton.classList.add("blue-button")
             contentLinks.appendChild(newRootNoteButton)
             newRootNoteButton.addEventListener('click', function(event) {
                 const form = new Form(Note.fieldsArray(), `/trees/${event.target.dataset.treeId}/notes`, "POST", Note)
