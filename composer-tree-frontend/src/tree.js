@@ -58,6 +58,7 @@ class Tree  {
     }
     static displayIndex(json) {
         heading.innerHTML = ""
+        sidebar.innerHTML = ''
         const sidebarHeading = document.createElement("h3")
         sidebarHeading.innerHTML = "Your Idea Trees"
         sidebarHeading.classList.add("sidebar-heading")

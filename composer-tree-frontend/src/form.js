@@ -37,7 +37,9 @@ class Form {
     display(classInstance = false) {
         const formClassObject = this.classObject
         heading.innerHTML = this.classObject.newFormTitle()
-        content.innerHTML = ''
+        contentLinks.innerHTML = ''
+        networkContainer.innerHTML = ''
+        contentDescription.innerHTML = ''
         const form = document.createElement("FORM")
         form.action = BACKEND_URL + this.urlEnd
         const formMethod = this.method
@@ -56,11 +58,16 @@ class Form {
             }
             form.appendChild(label)
             form.appendChild(input)
+            const br = document.createElement("br")
+            form.appendChild(br)
         })
         const submit = document.createElement("button")
         submit.innerHTML = "Submit"
         submit.setAttribute("type", "submit")
         form.appendChild(submit)
+        if (content.querySelector('form')) {
+            content.querySelector('form').remove()
+        }
         content.appendChild(form)
         form.addEventListener("submit", function(event) {
             event.preventDefault()
