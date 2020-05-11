@@ -1,3 +1,4 @@
 class Tree < ApplicationRecord
-    has_many :notes 
+    has_many :notes, dependent: :destroy 
+    # without the dependent option tree.notes.delete all will default to nullify. note tree_id is set to null and note is not deleted.
 end

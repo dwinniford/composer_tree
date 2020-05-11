@@ -35,6 +35,7 @@ class TreesController < ApplicationController
 
   # DELETE /trees/1
   def destroy
+    @tree.notes.delete_all
     @tree.destroy
   end
 
