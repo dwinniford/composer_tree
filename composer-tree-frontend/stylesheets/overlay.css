@@ -23,6 +23,7 @@
     padding: 20px;
     display: grid;
     grid-template-rows: auto 1fr;
+    grid-gap: 5px;
   }
 
 .overlay-buttons {
