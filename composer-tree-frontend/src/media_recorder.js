@@ -42,15 +42,21 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
             mediaRecorder.onstop = function(e) {
                 console.log("recorder stopped");
-              
                 const audio = document.createElement('audio');
+                const audioButtons = document.createElement('div')
+                audioButtons.classList.add('audio-buttons')
                 const deleteAudioButton = document.createElement('button');
+                const saveAudioButton =  document.createElement('button');
+                saveAudioButton.innerHTML = "Save"
+                saveAudioButton.classList.add("blue-button")
                 audio.setAttribute('controls', '');
                 deleteAudioButton.innerHTML = "Delete Audio";
                 deleteAudioButton.classList.add("blue-button")
               
                 clipContainer.appendChild(audio);
-                clipContainer.appendChild(deleteAudioButton);
+                clipContainer.appendChild(audioButtons)
+                audioButtons.appendChild(deleteAudioButton);
+                audioButtons.appendChild(saveAudioButton);
               
                 const blob = new Blob(chunks, { 'type' : 'audio/ogg; codecs=opus' });
                 chunks = [];
