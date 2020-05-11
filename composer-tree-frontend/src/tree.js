@@ -5,10 +5,20 @@ class Tree  {
         this.id = json.id; 
         this.notes = json.notes;
     }
+
+    static clearContent() {
+        heading.innerHTML = ''
+        contentDescription.innerHTML = ''
+        contentLinks.innerHTML = ''
+        networkContainer.innerHTML = ''
+    }
     displayShow() {
         heading.innerHTML = this.title
         contentDescription.innerHTML = this.description
         contentLinks.innerHTML = ''
+        if (content.querySelector('form')) {
+            content.querySelector('form').remove()
+        }
         const treeInstance = this 
         const editTreeLink = new DisplayLink("edit", function(){
             const treeForm = new Form(Tree.fieldsArray(), "/trees/"+treeInstance.id, "PATCH", Tree)
@@ -27,6 +37,7 @@ class Tree  {
                 .then(function(response){
                     console.log(response.ok)
                     if (response.ok) {
+                        Tree.clearContent()
                         fetch(BACKEND_URL+"/trees")
                         .then(resp => resp.json())
                         .then(function(json) {
@@ -41,7 +52,7 @@ class Tree  {
             const newRootNoteButton = document.createElement("button")
             newRootNoteButton.innerHTML = "Add a note"
             newRootNoteButton.dataset.treeId = this.id 
-            content.appendChild(newRootNoteButton)
+            contentLinks.appendChild(newRootNoteButton)
             newRootNoteButton.addEventListener('click', function(event) {
                 const form = new Form(Note.fieldsArray(), `/trees/${event.target.dataset.treeId}/notes`, "POST", Note)
                 const formElement = form.render()
