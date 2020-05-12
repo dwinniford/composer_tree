@@ -84,6 +84,7 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                         .then(resp => resp.json())
                         .then(function(json) {
                             console.log(json)
+                            audio.src = BACKEND_URL + json.url
                         })
                 }
 

@@ -41,6 +41,7 @@ class NotesController < ApplicationController
       # *** NameError Exception: uninitialized constant #<Class:0x00007f0c0cb60908>::Analyzable
       # Did you mean?  ActiveStorage::Analyzer
       # hits this error and rollsback
+      # url = Rails.application.routes.url_helpers.rails_blob_url(@note.audio_file, host: )
       url = Rails.application.routes.url_helpers.rails_blob_url(@note.audio_file, only_path: true)
       render json: {messae: "Attached to File", url: url}
     else 
