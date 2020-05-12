@@ -12,6 +12,7 @@ class Note {
         this.tree_id = json.tree_id
         this.user_id = json.user_id
         this.edgeCount = edgeCount
+        this.audioUrl = json.audio_url
     }
 
     render() {
@@ -21,6 +22,12 @@ class Note {
         description.innerHTML = this.description 
         editButton.dataset.treeId = this.tree_id
         editButton.dataset.id = this.id 
+        if (this.audioUrl.length > 0) {
+            const audio = document.createElement('audio');
+            audio.setAttribute('controls', '');
+            audio.src = BACKEND_URL + this.audioUrl
+            clipContainer.appendChild(audio);
+        }
         // if note does not have a child note display delete button
         deleteNoteButton.dataset.treeId = this.tree_id
         deleteNoteButton.dataset.id = this.id 
