@@ -22,6 +22,10 @@ class Note {
         description.innerHTML = this.description 
         editButton.dataset.treeId = this.tree_id
         editButton.dataset.id = this.id 
+        if (document.querySelector("audio")) {
+            document.querySelector("audio").remove()
+        }
+        
         if (this.audioUrl) {
             const audio = document.createElement('audio');
             audio.setAttribute('controls', '');
