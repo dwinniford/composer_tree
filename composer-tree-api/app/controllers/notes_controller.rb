@@ -33,7 +33,7 @@ class NotesController < ApplicationController
   # PATCH/PUT /notes/1
   def update
     if params[:note][:audio_file]
-      byebug
+      
       audio_file = @note.audio_file.attach(params[:note][:audio_file])
       # looks like the file is saved successfully but i get this error: 
       # TypeError (no implicit conversion of Array into String):
