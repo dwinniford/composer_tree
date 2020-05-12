@@ -22,7 +22,7 @@ class Note {
         description.innerHTML = this.description 
         editButton.dataset.treeId = this.tree_id
         editButton.dataset.id = this.id 
-        if (this.audioUrl.length > 0) {
+        if (this.audioUrl) {
             const audio = document.createElement('audio');
             audio.setAttribute('controls', '');
             audio.src = BACKEND_URL + this.audioUrl

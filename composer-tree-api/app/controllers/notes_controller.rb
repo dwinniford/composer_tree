@@ -10,8 +10,12 @@ class NotesController < ApplicationController
 
   # GET /notes/1
   def show
-    url = Rails.application.routes.url_helpers.rails_blob_url(@note.audio_file, only_path: true)
-    render json: {id: @note.id, title: @note.title, description: @note.description, parent_note_id: @note.parent_note_id, tree_id: @note.tree_id, starred: @note.starred, user_id: @note.user_id, audio_url: url}
+    if @note.audio_file.attached?
+      url = Rails.application.routes.url_helpers.rails_blob_url(@note.audio_file, only_path: true)
+      render json: {id: @note.id, title: @note.title, description: @note.description, parent_note_id: @note.parent_note_id, tree_id: @note.tree_id, starred: @note.starred, user_id: @note.user_id, audio_url: url}
+    else
+      render json: @note
+    end 
   end
 
   # POST /notes
