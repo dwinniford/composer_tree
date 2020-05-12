@@ -10,7 +10,9 @@ const overlayButtons = document.querySelector(".overlay-buttons")
 class Overlay {
     static close() {
         overlay.classList.remove('open');
-        overlay.querySelector('form').remove()
+        if (overlay.querySelector('form')) {
+            overlay.querySelector('form').remove()
+        }
         overlayButtons.classList.remove("close")
         // somehow the form is removed but will be added the next time another form is created
     }
