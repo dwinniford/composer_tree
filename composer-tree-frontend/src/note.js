@@ -31,6 +31,11 @@ class Note {
             recordButton.classList.add("hide")
             stopRecordButton.disabled = true 
             stopRecordButton.classList.add("hide")
+        } else {
+            recordButton.disabled = false 
+            recordButton.classList.remove("hide")
+            stopRecordButton.disabled = false 
+            stopRecordButton.classList.remove("hide")
         }
         // if note does not have a child note display delete button
         deleteNoteButton.dataset.treeId = this.tree_id
