@@ -59,14 +59,14 @@ class Network {
             fetch(BACKEND_URL+`/trees/${treeId}/notes/${event.nodes[0]}`)
                 .then(resp => resp.json())
                 .then(function(json) {
-                    console.log(json)
+                    
                     const note = new Note(json, eventEdgeCount)
                     note.render()
                     Overlay.open()
-                    console.log(note)
+                    
                 })
             
-            console.log(event.nodes[0])
+            // console.log(event.nodes[0])
             // logs note id.  If click on canvas but not a circle logs undefined. if click on line stil undefined.
         })
     }
