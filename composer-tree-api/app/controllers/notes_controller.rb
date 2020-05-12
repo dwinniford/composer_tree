@@ -34,14 +34,14 @@ class NotesController < ApplicationController
   def update
     if params[:note][:audio_file]
       
-      audio_file = @note.audio_file.attach(params[:note][:audio_file])
+      @note.audio_file.attach(params[:note][:audio_file])
       # looks like the file is saved successfully but i get this error: 
       # TypeError (no implicit conversion of Array into String):
       # in byebug console: 
       # *** NameError Exception: uninitialized constant #<Class:0x00007f0c0cb60908>::Analyzable
       # Did you mean?  ActiveStorage::Analyzer
       # hits this error and rollsback
-      url = Rails.application.routes.url_helpers.rails_blob_url(audio_file, only_path: true)
+      url = Rails.application.routes.url_helpers.rails_blob_url(@note.audio_file, only_path: true)
       render json: {messae: "Attached to File", url: url}
     else 
       if @note.update(note_params)
