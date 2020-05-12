@@ -27,6 +27,10 @@ class Note {
             audio.setAttribute('controls', '');
             audio.src = BACKEND_URL + this.audioUrl
             clipContainer.appendChild(audio);
+            recordButton.disabled = true 
+            recordButton.classList.add("hide")
+            stopRecordButton.disabled = true 
+            stopRecordButton.classList.add("hide")
         }
         // if note does not have a child note display delete button
         deleteNoteButton.dataset.treeId = this.tree_id

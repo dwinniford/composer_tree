@@ -54,6 +54,10 @@ main {
     color: black;
 }
 
+.blue-button.hide {
+    display: none
+}
+
 .content-container {
     display: grid;
     grid-template-columns: auto 1fr;
