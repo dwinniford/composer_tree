@@ -41,6 +41,10 @@ class User {
         })
     }
 
+    static loginWithFacebook() {
+        console.log("logged in with facebook")
+    }
+
     static logout () {
         console.log("logged out")
         // after fetch to sessions destroy

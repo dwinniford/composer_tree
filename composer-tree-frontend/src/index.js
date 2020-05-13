@@ -12,6 +12,7 @@ const userForm = document.querySelector(".user-form")
 const nav = document.querySelector("nav")
 const userLinks = document.querySelector(".user-links")
 const logoutButton = document.querySelector("#logout")
+const facebookButton = document.querySelector("#facebook")
 
 
 
@@ -30,5 +31,9 @@ loginButton.addEventListener("click", function(event) {
 
 logoutButton.addEventListener("click", function(event) {
     User.logout()
+})
+
+facebookButton.addEventListener("click", function(event){
+    User.loginWithFacebook()
 })
 
