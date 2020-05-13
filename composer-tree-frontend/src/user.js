@@ -40,6 +40,11 @@ class User {
 
     static logout () {
         console.log("logged out")
+        // after fetch to sessions destroy
+        nav.classList.remove("open")
+        userForm.classList.remove("hide")
+        userLinks.classList.remove("hide")
+        // remove other content
     }
 
     static fieldsArray() {
