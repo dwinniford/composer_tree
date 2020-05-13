@@ -7,5 +7,6 @@ class App {
 
     static resetContent() {
         sidebar.innerHTML = ''
+        heading.innerText = "Welcome to Composer Note Tree"
     }
 }

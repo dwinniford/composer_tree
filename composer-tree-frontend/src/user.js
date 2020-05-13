@@ -36,6 +36,7 @@ class User {
             nav.classList.add("open")
             userForm.classList.add("hide")
             userLinks.classList.add("hide")
+            userForm.innerHTML = ''
             
         })
     }
