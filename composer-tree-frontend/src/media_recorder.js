@@ -85,6 +85,10 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                         .then(function(json) {
                             console.log(json)
                             audioButtons.remove()
+                            recordButton.disabled = true 
+                            recordButton.classList.add("hide")
+                            stopRecordButton.disabled = true 
+                            stopRecordButton.classList.add("hide")
                             audio.src = BACKEND_URL + json.url
                         })
                 }
