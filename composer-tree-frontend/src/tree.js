@@ -76,7 +76,7 @@ class Tree  {
         contentDescription.innerHTML = ''
         sidebar.innerHTML = ''
         const sidebarHeading = document.createElement("h3")
-        sidebarHeading.innerHTML = "Your Idea Trees"
+        sidebarHeading.innerHTML = "Your Song Webs"
         sidebarHeading.classList.add("sidebar-heading")
         sidebar.appendChild(sidebarHeading)
         json.forEach(element => {

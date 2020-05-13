@@ -43,6 +43,10 @@ class User {
 
     static loginWithFacebook() {
         console.log("logged in with facebook")
+        // after successful login
+        nav.classList.add("open")
+        userForm.classList.add("hide")
+        userLinks.classList.add("hide")
     }
 
     static logout () {

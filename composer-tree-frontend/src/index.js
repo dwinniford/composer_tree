@@ -16,10 +16,10 @@ const facebookButton = document.querySelector("#facebook")
 
 
 
-const indexLink = new NavLink("View your idea trees", "/trees", Tree.displayIndex).display(topNav)
+const indexLink = new NavLink("View your Song Webs", "/trees", Tree.displayIndex).display(topNav)
 const treeForm = new Form(Tree.fieldsArray(), "/trees", "POST", Tree)
 // refactor form to use Tree class method for title
-const newLink = new DisplayLink("Add an Idea Tree", treeForm.display.bind(treeForm)).display(topNav)
+const newLink = new DisplayLink("Add a Song Web", treeForm.display.bind(treeForm)).display(topNav)
 
 signupButton.addEventListener("click", function(event){
     User.displaySignupForm()
