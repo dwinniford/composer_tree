@@ -27,6 +27,7 @@ class User {
                 .then(resp => resp.json())
                 .then(function(json) {
                     console.log(json)
+                    userName.innerHTML = `Logged in as ${json.name}`
                 })
             // after fetch display nav and remove form and user buttons
             nav.classList.add("open")

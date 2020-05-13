@@ -13,6 +13,7 @@ const nav = document.querySelector("nav")
 const userLinks = document.querySelector(".user-links")
 const logoutButton = document.querySelector("#logout")
 const facebookButton = document.querySelector("#facebook")
+const userName = document.querySelector("#user-name")
 
 
 
