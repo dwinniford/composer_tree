@@ -107,6 +107,7 @@ class Note {
                                 const tree = new Tree(json)
                                 tree.displayShow()
                             })
+                            
                         Overlay.close()
                         
                     }

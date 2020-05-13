@@ -13,6 +13,9 @@ class Overlay {
         if (overlay.querySelector('form')) {
             overlay.querySelector('form').remove()
         }
+        if (document.querySelector("audio")) {
+            document.querySelector("audio").remove()
+        }
         overlayButtons.classList.remove("close")
         // somehow the form is removed but will be added the next time another form is created
     }
