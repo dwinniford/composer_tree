@@ -9,6 +9,8 @@ const networkContainer = document.querySelector('.network-container')
 const loginButton = document.querySelector("#login")
 const signupButton = document.querySelector("#signup")
 const userForm = document.querySelector(".user-form")
+const nav = document.querySelector("nav")
+const userLinks = document.querySelector(".user-links")
 
 
 
@@ -19,6 +21,7 @@ const newLink = new DisplayLink("Add an Idea Tree", treeForm.display.bind(treeFo
 
 signupButton.addEventListener("click", function(event){
     User.displaySignupForm()
+    
 })
 
 

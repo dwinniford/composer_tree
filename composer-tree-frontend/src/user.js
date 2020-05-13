@@ -13,6 +13,10 @@ class User {
         formElement.addEventListener("submit", function(event) {
             event.preventDefault();
             console.log(event.currentTarget.action)
+            // after fetch display nav and remove form and user buttons
+            nav.classList.add("open")
+            userForm.classList.add("hide")
+            userLinks.classList.add("hide")
         })
     }
 
