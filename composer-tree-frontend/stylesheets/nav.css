@@ -7,3 +7,7 @@ nav {
 nav.open {
     display: grid 
 }
+
+/* #logout {
+    grid-column: 3;
+} */

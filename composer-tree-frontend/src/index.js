@@ -11,6 +11,7 @@ const signupButton = document.querySelector("#signup")
 const userForm = document.querySelector(".user-form")
 const nav = document.querySelector("nav")
 const userLinks = document.querySelector(".user-links")
+const logoutButton = document.querySelector("#logout")
 
 
 
