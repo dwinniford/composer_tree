@@ -8,5 +8,7 @@ class App {
     static resetContent() {
         sidebar.innerHTML = ''
         heading.innerText = "Welcome to Composer Note Tree"
+        contentDescription.innerText = 
+        "A voice note app for organizing your song ideas and collaborating with friends.";
     }
 }
