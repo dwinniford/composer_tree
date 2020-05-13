@@ -23,7 +23,11 @@ class User {
                 },
                 body: JSON.stringify(data)
             }
-            console.log(configObject)
+            fetch(BACKEND_URL + "/users", configObject)
+                .then(resp => resp.json())
+                .then(function(json) {
+                    console.log(json)
+                })
             // after fetch display nav and remove form and user buttons
             nav.classList.add("open")
             userForm.classList.add("hide")
