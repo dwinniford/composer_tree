@@ -21,7 +21,10 @@ const newLink = new DisplayLink("Add an Idea Tree", treeForm.display.bind(treeFo
 
 signupButton.addEventListener("click", function(event){
     User.displaySignupForm()
-    
+})
+
+loginButton.addEventListener("click", function(event) {
+    User.displayLoginForm()
 })
 
 
