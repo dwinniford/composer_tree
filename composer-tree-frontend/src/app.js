@@ -12,6 +12,10 @@ class App {
         "A voice note app for organizing your song ideas and collaborating with friends.";
         contentLinks.innerHTML = ''
         networkContainer.innerHTML = ''
+        userName.innerHTML = ''
+        nav.classList.remove("open")
+        userForm.classList.remove("hide")
+        userLinks.classList.remove("hide")
         if (content.querySelector("form")) {
             content.querySelector("form").remove()
         }
