@@ -156,10 +156,13 @@ class Note {
             fetch(event.target.action, configObject)
                 .then(resp => resp.json())
                 .then(function(json) {
+                    // can i use note render here?
+                    const note = new Note(json, 1)
+                    note.render()
                     form.remove()
-                    overlayButtons.classList.remove('close')
-                    overlayInner.querySelector("#overlay-title").innerHTML = json.title
-                    overlayInner.querySelector("#overlay-description").innerHTML = json.description
+                    // overlayButtons.classList.remove('close')
+                    // overlayInner.querySelector("#overlay-title").innerHTML = json.title
+                    // overlayInner.querySelector("#overlay-description").innerHTML = json.description
                     fetch(`${BACKEND_URL}/trees/${json.tree_id}`)
                         .then(resp => resp.json())
                         .then(function(json) {
