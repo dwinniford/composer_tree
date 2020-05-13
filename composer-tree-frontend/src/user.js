@@ -12,7 +12,11 @@ class User {
         // add form listener
         formElement.addEventListener("submit", function(event) {
             event.preventDefault();
-            console.log(event.currentTarget.action)
+            const name = event.currentTarget.name.value
+            const email = event.currentTarget.email.value 
+            const password = event.currentTarget.password.value 
+            const data = { user: {name: name, email: email, password: password }}
+            console.log(data)
             // after fetch display nav and remove form and user buttons
             nav.classList.add("open")
             userForm.classList.add("hide")
@@ -62,6 +66,6 @@ class User {
     }
 
     static fieldsArray() {
-        return [["Name", "text"], ["email", "text"], ["password", "password"]]
+        return [["name", "text"], ["email", "text"], ["password", "password"]]
     }
 }
