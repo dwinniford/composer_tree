@@ -45,10 +45,10 @@ class Note {
         console.log(this.edgeCount)
         if (this.edgeCount > 1) {
             deleteNoteButton.classList.add("hide")
-            deleteNoteButton.dataset.treeId = this.tree_id
-            deleteNoteButton.dataset.id = this.id 
         } else {
             deleteNoteButton.classList.remove("hide")
+            deleteNoteButton.dataset.treeId = this.tree_id
+            deleteNoteButton.dataset.id = this.id 
         }
         createChildNoteButton.dataset.treeId = this.tree_id
         createChildNoteButton.dataset.parentNoteId = this.id
