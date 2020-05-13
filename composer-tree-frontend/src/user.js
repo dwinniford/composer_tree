@@ -16,7 +16,14 @@ class User {
             const email = event.currentTarget.email.value 
             const password = event.currentTarget.password.value 
             const data = { user: {name: name, email: email, password: password }}
-            console.log(data)
+            const configObject = {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }
+            console.log(configObject)
             // after fetch display nav and remove form and user buttons
             nav.classList.add("open")
             userForm.classList.add("hide")
