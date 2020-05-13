@@ -26,6 +26,8 @@ class Form {
             // }
             form.appendChild(label)
             form.appendChild(input)
+            const br = document.createElement("br")
+            form.appendChild(br)
         })
         const submit = document.createElement("button")
         submit.innerHTML = "Submit"

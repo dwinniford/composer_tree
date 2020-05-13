@@ -118,6 +118,9 @@ class Note {
            if (editForm) {
                editForm.remove()
            }
+           if (document.querySelector("audio")) {
+               document.querySelector("audio").remove()
+           }
            const form = new Form(Note.fieldsArray(), `/trees/${event.target.dataset.treeId}/notes`, "POST", Note)
            const formElement = form.render()
            formElement.setAttribute("name", "create-child-note-form")
