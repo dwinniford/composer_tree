@@ -28,4 +28,7 @@ loginButton.addEventListener("click", function(event) {
     User.displayLoginForm()
 })
 
+logoutButton.addEventListener("click", function(event) {
+    User.logout()
+})
 

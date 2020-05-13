@@ -38,6 +38,10 @@ class User {
         })
     }
 
+    static logout () {
+        console.log("logged out")
+    }
+
     static fieldsArray() {
         return [["Name", "text"], ["email", "text"], ["password", "password"]]
     }
