@@ -46,7 +46,10 @@ class User {
         nav.classList.remove("open")
         userForm.classList.remove("hide")
         userLinks.classList.remove("hide")
-        // remove other content
+        // remove other content - sidebar, note content, link 
+        App.resetContent()
+        // display home content
+
     }
 
     static fieldsArray() {

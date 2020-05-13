@@ -1,0 +1,11 @@
+console.log("hello from app class")
+
+class App {
+    constructor() {
+
+    }
+
+    static resetContent() {
+        sidebar.innerHTML = ''
+    }
+}
