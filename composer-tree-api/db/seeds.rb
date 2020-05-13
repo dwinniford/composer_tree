@@ -5,6 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+jill = User.create(name: "Jill", email: "jill@jill.com", password: "jill")
  Tree.delete_all
 blues = Tree.create(title: "Blues", description: "baby inspired blues melody")
 bouncy = Tree.create(title: "Bouncy melody", description: "a real bouncy kind of melody")
