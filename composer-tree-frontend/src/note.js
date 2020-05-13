@@ -42,8 +42,14 @@ class Note {
             stopRecordButton.classList.remove("hide")
         }
         // if note does not have a child note display delete button
-        deleteNoteButton.dataset.treeId = this.tree_id
-        deleteNoteButton.dataset.id = this.id 
+        console.log(this.edgeCount)
+        if (this.edgeCount > 1) {
+            deleteNoteButton.classList.add("hide")
+            deleteNoteButton.dataset.treeId = this.tree_id
+            deleteNoteButton.dataset.id = this.id 
+        } else {
+            deleteNoteButton.classList.remove("hide")
+        }
         createChildNoteButton.dataset.treeId = this.tree_id
         createChildNoteButton.dataset.parentNoteId = this.id
         if (this.edgeCount === 1 || this.edgeCount === 0) {
@@ -161,10 +167,6 @@ class Note {
                     note.render()
                     form.remove()
                     overlayButtons.classList.remove("close")
-                    // need to remove close from overlayButtons classlist
-                    // overlayButtons.classList.remove('close')
-                    // overlayInner.querySelector("#overlay-title").innerHTML = json.title
-                    // overlayInner.querySelector("#overlay-description").innerHTML = json.description
                     fetch(`${BACKEND_URL}/trees/${json.tree_id}`)
                         .then(resp => resp.json())
                         .then(function(json) {

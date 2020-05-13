@@ -66,6 +66,10 @@
     -moz-appearance: none;
 }
 
+#delete-note.hide {
+    display: none;
+}
+
 .close {
     background: none;
     color: black;
