@@ -3,7 +3,9 @@ class TreesController < ApplicationController
 
   # GET /trees
   def index
-    @trees = Tree.all
+    byebug
+    @user = User.find(cookies[:user_id])
+    @trees = @user.trees
 
     render json: @trees
   end
