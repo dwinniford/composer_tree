@@ -4,6 +4,15 @@ class User {
     }
 
     static displaySignupForm() {
-        console.log("signup form")
+        const form = new Form(User.fieldsArray(), "/users", "POST", User)
+        const formElement = form.render()
+        // formElement.setAttribute("name", "create-child-note-form")
+        userForm.innerHTML = ''
+        userForm.appendChild(formElement)
+        // add form listener
+    }
+
+    static fieldsArray() {
+        return [["Name", "text"], ["email", "text"]]
     }
 }
