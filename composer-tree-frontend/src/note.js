@@ -160,6 +160,8 @@ class Note {
                     const note = new Note(json, 1)
                     note.render()
                     form.remove()
+                    overlayButtons.classList.remove("close")
+                    // need to remove close from overlayButtons classlist
                     // overlayButtons.classList.remove('close')
                     // overlayInner.querySelector("#overlay-title").innerHTML = json.title
                     // overlayInner.querySelector("#overlay-description").innerHTML = json.description
