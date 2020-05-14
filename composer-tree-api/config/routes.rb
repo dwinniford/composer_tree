@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'sessions/create'
+  delete 'sessions/destroy'
   resources :users
   resources :trees do 
     resources :notes 

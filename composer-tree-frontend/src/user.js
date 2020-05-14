@@ -18,6 +18,7 @@ class User {
             const data = { user: {name: name, email: email, password: password }}
             const configObject = {
                 method: "POST",
+                // credentials: true, // true is not a valid enum value
                 headers: {
                     'Content-Type': 'application/json'
                 },
