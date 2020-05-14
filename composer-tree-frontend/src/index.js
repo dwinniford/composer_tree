@@ -16,25 +16,12 @@ const facebookButton = document.querySelector("#facebook")
 const userName = document.querySelector("#user-name")
 
 
-
+//  add nav links to index.js and make class add listener?
 const indexLink = new NavLink("View your Song Webs", "/trees", Tree.displayIndex).display(topNav)
+// move this to add web button listener?
 const treeForm = new Form(Tree.fieldsArray(), "/trees", "POST", Tree)
 // refactor form to use Tree class method for title
 const newLink = new DisplayLink("Add a Song Web", treeForm.display.bind(treeForm)).display(topNav)
 
-signupButton.addEventListener("click", function(event){
-    User.displaySignupForm()
-})
-
-loginButton.addEventListener("click", function(event) {
-    User.displayLoginForm()
-})
-
-logoutButton.addEventListener("click", function(event) {
-    User.logout()
-})
-
-facebookButton.addEventListener("click", function(event){
-    User.loginWithFacebook()
-})
+App.init()
 

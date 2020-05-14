@@ -5,6 +5,26 @@ class App {
 
     }
 
+    static init() {
+        // sets up all event listeners for user login and signup and logout
+        signupButton.addEventListener("click", function(event){
+            User.displaySignupForm()
+        })
+        
+        loginButton.addEventListener("click", function(event) {
+            User.displayLoginForm()
+        })
+        
+        logoutButton.addEventListener("click", function(event) {
+            User.logout()
+        })
+        
+        facebookButton.addEventListener("click", function(event){
+            User.loginWithFacebook()
+        })
+        // login sets up listener for nav links
+    }
+
     static resetContent() {
         sidebar.innerHTML = ''
         heading.innerText = "Welcome to Song Web"
