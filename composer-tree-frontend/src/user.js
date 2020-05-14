@@ -48,7 +48,24 @@ class User {
         // add form listener
         formElement.addEventListener("submit", function(event) {
             event.preventDefault();
-            console.log(event.currentTarget.action)
+            const name = event.currentTarget.name.value
+            const email = event.currentTarget.email.value 
+            const password = event.currentTarget.password.value 
+            const data = { user: {name: name, email: email, password: password }}
+            const configObject = {
+                method: "POST",
+                // credentials: true, // true is not a valid enum value
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }
+            fetch(BACKEND_URL + "/sessions/create", configObject)
+                .then(resp => resp.json())
+                .then(function(json) {
+                    console.log(json)
+                    userName.innerHTML = `Logged in as ${json.name}`
+                })
             // after fetch display nav and remove form and user buttons
             nav.classList.add("open")
             userForm.classList.add("hide")
