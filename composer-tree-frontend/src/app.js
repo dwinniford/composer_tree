@@ -1,4 +1,18 @@
 console.log("hello from app class")
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) == ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) == 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+  }
 
 class App {
     constructor() {
@@ -7,6 +21,8 @@ class App {
 
     static init() {
         // sets up all event listeners for user login and signup and logout
+        fetch(BACKEND_URL, {credentials: 'include'})
+
         signupButton.addEventListener("click", function(event){
             User.displaySignupForm()
         })

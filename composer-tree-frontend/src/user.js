@@ -54,9 +54,12 @@ class User {
             const data = { user: {name: name, email: email, password: password }}
             const configObject = {
                 method: "POST",
-                credentials: 'same-origin', // true is not a valid enum value
+                credentials: 'include', // true is not a valid enum value
                 headers: {
-                    'Access-Control-Allow-Origin': BACKEND_URL,
+                    // 'Access-Control-Allow-Origin': 'http://localhost:3000',
+                    // 'Referrer-Policy': 'same-origin',
+                    'X-CSRF-Token': getCookie("CSRF-TOKEN"),
+
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)

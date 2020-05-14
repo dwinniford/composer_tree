@@ -86,7 +86,7 @@ class Tree  {
             item.classList.add("blue-button")
             sidebar.appendChild(item)
             item.addEventListener("click", function(event) {
-                fetch(`${BACKEND_URL}/trees/${parseInt(event.target.getAttribute("data-id"))}`)
+                fetch(`${BACKEND_URL}/trees/${parseInt(event.target.getAttribute("data-id"))}`, {credentials: 'include',})
                     .then(resp => resp.json())
                     .then(function(json) {
                         const tree = new Tree(json)

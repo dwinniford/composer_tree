@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  root to: "application#cookie"
   post '/login', to: 'sessions#create'
   delete '/sessions', to: 'sessions#destroy'
   resources :users
