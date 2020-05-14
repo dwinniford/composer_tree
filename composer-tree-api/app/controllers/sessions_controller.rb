@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
             session[:user_id] = @user.id 
             render json: @user
         else 
-            render json: @user.errors
+            render json: {errors: "login failed"}
         end
   end
 

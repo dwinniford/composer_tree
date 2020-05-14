@@ -60,7 +60,7 @@ class User {
                 },
                 body: JSON.stringify(data)
             }
-            fetch(BACKEND_URL + "/sessions/create", configObject)
+            fetch(BACKEND_URL + "/login", configObject)
                 .then(resp => resp.json())
                 .then(function(json) {
                     console.log(json)

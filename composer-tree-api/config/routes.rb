@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
-  post 'sessions/create'
-  delete 'sessions/destroy'
+  post '/login', to: 'sessions#create'
+  delete '/sessions', to: 'sessions#destroy'
   resources :users
   resources :trees do 
     resources :notes 
