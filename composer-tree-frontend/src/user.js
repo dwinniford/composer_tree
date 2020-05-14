@@ -18,7 +18,7 @@ class User {
             const data = { user: {name: name, email: email, password: password }}
             const configObject = {
                 method: "POST",
-                // credentials: true, // true is not a valid enum value
+                // credentials: 'include', // 'same-origin' is default
                 headers: {
                     'Content-Type': 'application/json'
                 },
@@ -54,8 +54,9 @@ class User {
             const data = { user: {name: name, email: email, password: password }}
             const configObject = {
                 method: "POST",
-                // credentials: true, // true is not a valid enum value
+                credentials: 'same-origin', // true is not a valid enum value
                 headers: {
+                    'Access-Control-Allow-Origin': BACKEND_URL,
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)
