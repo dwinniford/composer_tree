@@ -39,10 +39,10 @@ class App {
             User.logout()
         })
         
-        facebookButton.addEventListener("click", function(event){
-            User.loginWithFacebook()
-        })
-        // login sets up listener for nav links
+        // facebookButton.addEventListener("click", function(event){
+        //     User.loginWithFacebook()
+        // })
+        
         websIndexButton.addEventListener("click", function(event) {
             event.preventDefault();
             fetch(BACKEND_URL + "/trees", {credentials: 'include', headers: {'X-CSRF-Token': getCSRFToken()}})

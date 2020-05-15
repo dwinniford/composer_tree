@@ -5,3 +5,7 @@
 .user-form.hide {
     display: none;
 }
+
+#facebook {
+    display: none
+}
