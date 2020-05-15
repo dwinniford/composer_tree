@@ -78,6 +78,23 @@ class Tree  {
         
         
     }
+
+    static appendIndexButton(element) {
+        const item = document.createElement('button')
+        item.innerHTML = element.title
+        item.setAttribute("data-id", element.id )
+        item.classList.add("blue-button")
+        sidebar.appendChild(item)
+        item.addEventListener("click", function(event) {
+            fetch(`${BACKEND_URL}/trees/${parseInt(event.target.getAttribute("data-id"))}`, 
+            {credentials: 'include', headers: {'X-CSRF-Token': getCSRFToken()}})
+                .then(resp => resp.json())
+                .then(function(json) {
+                    const tree = new Tree(json)
+                    tree.displayShow()
+                })
+        })
+    }
     static displayIndex(json) {
         heading.innerHTML = ""
         contentDescription.innerHTML = ''
@@ -86,23 +103,7 @@ class Tree  {
         sidebarHeading.innerHTML = "Your Song Webs"
         sidebarHeading.classList.add("sidebar-heading")
         sidebar.appendChild(sidebarHeading)
-        json.forEach(element => {
-            const item = document.createElement('button')
-            item.innerHTML = element.title
-            item.setAttribute("data-id", element.id )
-            item.classList.add("blue-button")
-            sidebar.appendChild(item)
-            item.addEventListener("click", function(event) {
-                fetch(`${BACKEND_URL}/trees/${parseInt(event.target.getAttribute("data-id"))}`, 
-                {credentials: 'include', headers: {'X-CSRF-Token': getCSRFToken()}})
-                    .then(resp => resp.json())
-                    .then(function(json) {
-                        const tree = new Tree(json)
-                        tree.displayShow()
-                    })
-            })
-
-        });
+        json.forEach(element => Tree.appendIndexButton(element));
     }
 
     static addNewFormListener() {
@@ -110,22 +111,30 @@ class Tree  {
         form.addEventListener("submit", function(event) {
             event.preventDefault()
             console.log("submit")
-            // const titleInput = document.querySelector("input#title").value 
-            // const descriptionInput = document.querySelector("input#description").value
-            // // abstract out these two.  iterate through array query for input and push value into array. spread array into data 
-            // const data = formClassObject.formData(titleInput, descriptionInput)
-            // const configObject = {
-            //     credentials: 'include',
-            //     // cannot get method directly from form because html form only accepts get and post
-            //     method: formMethod,
-            //     // mode: "no-cors",
-            //     headers: {
-            //         'X-CSRF-Token': getCSRFToken(),
-            //         'Content-Type': 'application/json'
-            //     },
-            //     body: JSON.stringify(data)
-                
-            // }
+            const titleInput = form.title.value  
+            const descriptionInput = form.description.value
+            // abstract out these two.  iterate through array query for input and push value into array. spread array into data 
+            const data = Tree.formData(titleInput, descriptionInput)
+            const configObject = {
+                credentials: 'include',
+                method: "POST",
+                headers: {
+                    'X-CSRF-Token': getCSRFToken(),
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }
+            fetch(BACKEND_URL + "/trees", configObject)
+                .then(resp => resp.json())
+                .then(function(json) {
+                    console.log(json)
+                    const newInstance = new formClassObject(json)
+                    newInstance.displayShow()
+                    // tree form needs to append to the sidebar or update the sidebar
+                    
+                }).catch(function(errors) {
+                    console.log(errors)
+                })
         })
 
     }
