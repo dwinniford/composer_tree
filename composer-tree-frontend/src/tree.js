@@ -144,7 +144,6 @@ class Tree  {
     }
 
     static addEditFormListener() {
-        
         const form = content.querySelector("form")
         form.addEventListener("submit", function(event) {
             event.preventDefault()
