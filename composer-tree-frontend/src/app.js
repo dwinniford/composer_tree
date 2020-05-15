@@ -55,6 +55,8 @@ class App {
             const treeForm = new Form(Tree.fieldsArray(), "/trees", "POST", Tree)
             // treeForm.display()
             const formElement = treeForm.render()
+            App.clearContent()
+            heading.innerHTML = "Create a new Song Web"
             content.appendChild(formElement)
 
         })
@@ -74,5 +76,11 @@ class App {
         if (content.querySelector("form")) {
             content.querySelector("form").remove()
         }
+    }
+    static clearContent() {
+        heading.innerHTML = ''
+        contentLinks.innerHTML = ''
+        networkContainer.innerHTML = ''
+        contentDescription.innerHTML = ''
     }
 }
