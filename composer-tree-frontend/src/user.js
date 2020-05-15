@@ -18,8 +18,9 @@ class User {
             const data = { user: {name: name, email: email, password: password }}
             const configObject = {
                 method: "POST",
-                // credentials: 'include', // 'same-origin' is default
+                credentials: 'include',
                 headers: {
+                    'X-CSRF-Token': getCSRFToken(),
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)
