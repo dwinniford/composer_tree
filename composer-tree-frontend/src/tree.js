@@ -170,7 +170,6 @@ class Tree  {
                     // finds element in index and updates
                     const indexButton = sidebar.querySelector(`[data-id="${json.id}"]`)
                     indexButton.innerHTML = json.title 
-                    // Tree.appendIndexButton(json)
                 }).catch(function(errors) {
                     console.log(errors)
                 })
