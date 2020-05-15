@@ -105,6 +105,31 @@ class Tree  {
         });
     }
 
+    static addNewFormListener() {
+        const form = content.querySelector("form")
+        form.addEventListener("submit", function(event) {
+            event.preventDefault()
+            console.log("submit")
+            // const titleInput = document.querySelector("input#title").value 
+            // const descriptionInput = document.querySelector("input#description").value
+            // // abstract out these two.  iterate through array query for input and push value into array. spread array into data 
+            // const data = formClassObject.formData(titleInput, descriptionInput)
+            // const configObject = {
+            //     credentials: 'include',
+            //     // cannot get method directly from form because html form only accepts get and post
+            //     method: formMethod,
+            //     // mode: "no-cors",
+            //     headers: {
+            //         'X-CSRF-Token': getCSRFToken(),
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify(data)
+                
+            // }
+        })
+
+    }
+
     static formData(title, description) {
         return {tree: {title: title, description: description}}
     }

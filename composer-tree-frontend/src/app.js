@@ -58,6 +58,7 @@ class App {
             App.clearContent()
             heading.innerHTML = "Create a new Song Web"
             content.appendChild(formElement)
+            Tree.addNewFormListener()
 
         })
     }
