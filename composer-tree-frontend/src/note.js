@@ -154,8 +154,10 @@ class Note {
                 parent_note_id: parseInt(event.target.parentNoteId.value) 
             }}
             const configObject = {
+                credentials: 'include',
                 method: "POST",
                 headers: {
+                    'X-CSRF-Token': getCSRFToken(),
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)
@@ -168,7 +170,7 @@ class Note {
                     note.render()
                     form.remove()
                     overlayButtons.classList.remove("close")
-                    fetch(`${BACKEND_URL}/trees/${json.tree_id}`)
+                    fetch(`${BACKEND_URL}/trees/${json.tree_id}`, getConfigObject)
                         .then(resp => resp.json())
                         .then(function(json) {
                             const tree = new Tree(json)
@@ -209,8 +211,10 @@ class Note {
                 }  
             }
             const configObject = {
+                credentials: 'include',
                 method: "POST",
                 headers: {
+                    'X-CSRF-Token': getCSRFToken(),
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)
