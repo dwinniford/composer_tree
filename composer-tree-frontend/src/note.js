@@ -70,8 +70,10 @@ class Note {
                 description: event.currentTarget.description.value
             }
             const configObject = {
+                credentials: 'include',
                 method: "PATCH",
                 headers: {
+                    'X-CSRF-Token': getCSRFToken(),
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)
@@ -83,7 +85,7 @@ class Note {
                     editNoteForm.remove()
                     overlayInner.querySelector("#overlay-title").innerHTML = json.title
                     overlayInner.querySelector("#overlay-description").innerHTML = json.description
-                    fetch(`${BACKEND_URL}/trees/${json.tree_id}`)
+                    fetch(`${BACKEND_URL}/trees/${json.tree_id}`, getConfigObject)
                         .then(resp => resp.json())
                         .then(function(json) {
                             const tree = new Tree(json)
@@ -97,11 +99,11 @@ class Note {
 
     static addDeleteListener() {
         deleteNoteButton.addEventListener("click", function(event) {
-            fetch(BACKEND_URL + `/trees/${event.target.dataset.treeId}/notes/${event.target.dataset.id}`, {method: "DELETE"})
+            fetch(BACKEND_URL + `/trees/${event.target.dataset.treeId}/notes/${event.target.dataset.id}`, deleteConfigObject)
                 .then(function(response){
                     console.log(response.ok)
                     if (response.ok) {
-                        fetch(BACKEND_URL+`/trees/${deleteNoteButton.dataset.treeId}`)
+                        fetch(BACKEND_URL+`/trees/${deleteNoteButton.dataset.treeId}`, getConfigObject)
                             .then(resp => resp.json())
                             .then(function(json) {
                                 const tree = new Tree(json)

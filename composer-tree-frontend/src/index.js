@@ -17,6 +17,13 @@ const userName = document.querySelector("#user-name")
 const websIndexButton = document.querySelector("#view-webs")
 const addWebButton = document.querySelector("#add-web")
 const getConfigObject = {credentials: 'include', headers: {'X-CSRF-Token': getCSRFToken()}}
+const deleteConfigObject = {
+    method: "DELETE",
+    credentials: 'include',
+    headers: {
+        'X-CSRF-Token': getCSRFToken()
+    }
+}
 
 
 //  add nav links to index.js and make class add listener?
