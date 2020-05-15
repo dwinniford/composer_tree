@@ -96,6 +96,7 @@ class Form {
                     console.log(json)
                     const newInstance = new formClassObject(json)
                     newInstance.displayShow()
+                    // tree form needs to append to the sidebar or update the sidebar
                 }).catch(function(errors) {
                     console.log(errors)
                 })

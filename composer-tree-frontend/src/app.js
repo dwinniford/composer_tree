@@ -53,7 +53,10 @@ class App {
         }) 
         addWebButton.addEventListener("click", function(event) {
             const treeForm = new Form(Tree.fieldsArray(), "/trees", "POST", Tree)
-            treeForm.display()
+            // treeForm.display()
+            const formElement = treeForm.render()
+            content.appendChild(formElement)
+
         })
     }
 
