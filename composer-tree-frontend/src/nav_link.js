@@ -18,7 +18,7 @@ class NavLink {
             // this now refers to link(the html element) because it is the object to the left of the function
             
             event.preventDefault();
-            fetch(event.target.href)
+            fetch(event.target.href, {credentials: 'include', headers: {'X-CSRF-Token': getCSRFToken()}})
                 .then(resp => resp.json())
                 .then(function(json) {
                     // lost this context.  how can i pass the callback attribute to this area
