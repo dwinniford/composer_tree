@@ -51,6 +51,10 @@ class App {
                     Tree.displayIndex(json)
                 })
         }) 
+        addWebButton.addEventListener("click", function(event) {
+            const treeForm = new Form(Tree.fieldsArray(), "/trees", "POST", Tree)
+            treeForm.display()
+        })
     }
 
     static resetContent() {
