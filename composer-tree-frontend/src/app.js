@@ -65,7 +65,7 @@ class App {
         sidebar.innerHTML = ''
         heading.innerText = "Welcome to Song Web"
         contentDescription.innerText = 
-        "A voice note app for organizing your song ideas and collaborating with friends.";
+        "A voice note app to organize your song ideas and foster creativity.";
         contentLinks.innerHTML = ''
         networkContainer.innerHTML = ''
         userName.innerHTML = ''
