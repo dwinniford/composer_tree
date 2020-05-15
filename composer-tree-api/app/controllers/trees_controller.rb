@@ -16,7 +16,8 @@ class TreesController < ApplicationController
 
   # POST /trees
   def create
-    @tree = Tree.new(tree_params)
+    @user = User.find(session[:user_id])
+    @tree = @user.trees.build(tree_params)
 
     if @tree.save
       render json: @tree, status: :created, location: @tree

@@ -78,10 +78,12 @@ class Form {
             // abstract out these two.  iterate through array query for input and push value into array. spread array into data 
             const data = formClassObject.formData(titleInput, descriptionInput)
             const configObject = {
+                credentials: 'include',
                 // cannot get method directly from form because html form only accepts get and post
                 method: formMethod,
                 // mode: "no-cors",
                 headers: {
+                    'X-CSRF-Token': getCSRFToken(),
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)
