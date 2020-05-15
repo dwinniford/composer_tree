@@ -28,6 +28,8 @@ class Tree  {
         editTreeButton.addEventListener("click", function(event) {
             const treeForm = new Form(Tree.fieldsArray(), "/trees/"+treeInstance.id, "PATCH", Tree)
             const formElement = treeForm.render()
+            formElement.title.value = heading.innerHTML 
+            formElement.description.value = contentDescription.innerHTML
             App.clearContent()
             heading.innerHTML = "Edit Song Web"
             content.appendChild(formElement)
