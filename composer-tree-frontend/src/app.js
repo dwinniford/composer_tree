@@ -14,6 +14,10 @@ function getCookie(cname) {
     return "";
   }
 
+  function getCSRFToken() {
+    return unescape(document.cookie.split('=')[1])
+  }
+
 class App {
     constructor() {
 

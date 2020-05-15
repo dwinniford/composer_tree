@@ -58,14 +58,17 @@ class User {
                 headers: {
                     // 'Access-Control-Allow-Origin': 'http://localhost:3000',
                     // 'Referrer-Policy': 'same-origin',
-                    'X-CSRF-Token': getCookie("CSRF-TOKEN"),
+                    'X-CSRF-Token': getCSRFToken(),
 
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data)
             }
             fetch(BACKEND_URL + "/login", configObject)
-                .then(resp => resp.json())
+                .then(function(resp){
+                    console.log(resp)
+                    return resp.json()
+                })
                 .then(function(json) {
                     console.log(json)
                     userName.innerHTML = `Logged in as ${json.name}`

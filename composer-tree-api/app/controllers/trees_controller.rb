@@ -3,6 +3,8 @@ class TreesController < ApplicationController
 
   # GET /trees
   def index
+    # @user = User.find(cookies[:user_id])
+    byebug
     @user = User.find(session[:user_id])
     @trees = @user.trees
 
