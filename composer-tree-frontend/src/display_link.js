@@ -6,14 +6,14 @@ class DisplayLink {
         this.callback = callback;
     }
     display(parent) {
-        const link = document.createElement("a")
-        link.classList.add("blue-button")
-        link.innerHTML = this.text 
-        parent.appendChild(link)
-        const linkCallback = this.callback
-        link.addEventListener("click", function(event) {
-            linkCallback()
+        const button = document.createElement("button")
+        button.classList.add("blue-button")
+        button.innerHTML = this.text 
+        parent.appendChild(button)
+        const buttonCallback = this.callback
+        button.addEventListener("click", function(event) {
+            buttonCallback()
         }) 
-        return link 
+        return button 
     }
 }
