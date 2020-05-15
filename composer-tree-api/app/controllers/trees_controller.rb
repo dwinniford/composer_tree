@@ -29,7 +29,7 @@ class TreesController < ApplicationController
   # PATCH/PUT /trees/1
   def update
     if @tree.update(tree_params)
-      render json: @tree
+      render json: @tree, include: [:notes]
     else
       render json: @tree.errors, status: :unprocessable_entity
     end
