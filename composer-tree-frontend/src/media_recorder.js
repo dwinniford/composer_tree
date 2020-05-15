@@ -103,6 +103,9 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
               
                 deleteAudioButton.onclick = function(e) {
                   clipContainer.querySelector("audio").remove();
+                  audioButtons.remove()
+                  recordButton.classList.remove("hide")
+                  stopRecordButton.classList.remove("hide")
                 }
               }
          
