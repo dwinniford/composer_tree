@@ -14,14 +14,16 @@ const userLinks = document.querySelector(".user-links")
 const logoutButton = document.querySelector("#logout")
 const facebookButton = document.querySelector("#facebook")
 const userName = document.querySelector("#user-name")
+const websIndexButton = document.querySelector("#view-webs")
+const addWebButton = document.querySelector("#add-web")
 
 
 //  add nav links to index.js and make class add listener?
-const indexLink = new NavLink("View your Song Webs", "/trees", Tree.displayIndex).display(topNav)
+// const indexLink = new NavLink("View your Song Webs", "/trees", Tree.displayIndex).display(topNav)
 // move this to add web button listener?
-const treeForm = new Form(Tree.fieldsArray(), "/trees", "POST", Tree)
+// const treeForm = new Form(Tree.fieldsArray(), "/trees", "POST", Tree)
 // refactor form to use Tree class method for title
-const newLink = new DisplayLink("Add a Song Web", treeForm.display.bind(treeForm)).display(topNav)
+// const newLink = new DisplayLink("Add a Song Web", treeForm.display.bind(treeForm)).display(topNav)
 
 App.init()
 

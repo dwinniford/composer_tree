@@ -43,6 +43,14 @@ class App {
             User.loginWithFacebook()
         })
         // login sets up listener for nav links
+        websIndexButton.addEventListener("click", function(event) {
+            event.preventDefault();
+            fetch(BACKEND_URL + "/trees", {credentials: 'include', headers: {'X-CSRF-Token': getCSRFToken()}})
+                .then(resp => resp.json())
+                .then(function(json) {
+                    Tree.displayIndex(json)
+                })
+        }) 
     }
 
     static resetContent() {
