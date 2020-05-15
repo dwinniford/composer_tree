@@ -74,6 +74,9 @@ class Tree  {
             newRootNoteButton.classList.add("blue-button")
             contentLinks.appendChild(newRootNoteButton)
             newRootNoteButton.addEventListener('click', function(event) {
+                if (content.querySelector("form")) {
+                    content.querySelector("form").remove()
+                }
                 const form = new Form(Note.fieldsArray(), `/trees/${event.target.dataset.treeId}/notes`, "POST", Note)
                 const formElement = form.render()
                 formElement.setAttribute("name", "create-root-note-form")

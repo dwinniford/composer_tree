@@ -42,6 +42,8 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
             mediaRecorder.onstop = function(e) {
                 console.log("recorder stopped");
+                recordButton.classList.add("hide")
+                stopRecordButton.classList.add("hide")
                 const audio = document.createElement('audio');
                 const audioButtons = document.createElement('div')
                 audioButtons.classList.add('audio-buttons')
@@ -100,8 +102,7 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                 saveAudioButton.addEventListener("click", saveFile)
               
                 deleteAudioButton.onclick = function(e) {
-                  let evtTgt = e.target;
-                  evtTgt.parentNode.innerHTML = '';
+                  clipContainer.querySelector("audio").remove();
                 }
               }
          

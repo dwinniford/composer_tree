@@ -81,5 +81,8 @@ class App {
         contentLinks.innerHTML = ''
         networkContainer.innerHTML = ''
         contentDescription.innerHTML = ''
+        if (content.querySelector("form")) {
+            content.querySelector("form").remove()
+        }
     }
 }
