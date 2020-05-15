@@ -21,15 +21,18 @@ class Tree  {
             content.querySelector('form').remove()
         }
         const treeInstance = this 
-        const editTreeLink = new DisplayLink("edit", function(){
+        const editTreeButton = document.createElement("button")
+        editTreeButton.innerHTML = "Edit"
+        editTreeButton.classList.add("blue-button")
+        contentLinks.appendChild(editTreeButton)
+        editTreeButton.addEventListener("click", function(event) {
             const treeForm = new Form(Tree.fieldsArray(), "/trees/"+treeInstance.id, "PATCH", Tree)
             const formElement = treeForm.render()
             App.clearContent()
             heading.innerHTML = "Edit Song Web"
             content.appendChild(formElement)
-            // Tree.addNewFormListener()
+            Tree.addEditFormListener()
         })
-        editTreeLink.display(contentLinks)
         
         const deleteLink = document.createElement("a")
         deleteLink.href = BACKEND_URL + "/trees/"+treeInstance.id
@@ -138,6 +141,37 @@ class Tree  {
                 })
         })
 
+    }
+
+    static addEditFormListener() {
+        
+        const form = content.querySelector("form")
+        form.addEventListener("submit", function(event) {
+            event.preventDefault()
+            console.log("submit")
+            const titleInput = form.title.value  
+            const descriptionInput = form.description.value
+            const data = Tree.formData(titleInput, descriptionInput)
+            const configObject = {
+                credentials: 'include',
+                method: "PATCH",
+                headers: {
+                    'X-CSRF-Token': getCSRFToken(),
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }
+            fetch(event.currentTarget.action, configObject)
+                .then(resp => resp.json())
+                .then(function(json) {
+                    const tree = new Tree(json)
+                    tree.displayShow()
+                    // finds element in index and updates
+                    // Tree.appendIndexButton(json)
+                }).catch(function(errors) {
+                    console.log(errors)
+                })
+        })
     }
 
     static formData(title, description) {
