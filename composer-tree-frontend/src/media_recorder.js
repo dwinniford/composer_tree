@@ -78,7 +78,11 @@ if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
                     // console.log(JSON.stringify({ note: {audio_file: file}}))
                     // JSON.stringify does not work with the file
                     fetch(BACKEND_URL + `/trees/${treeId}/notes/${noteId}`, {
+                        credentials: 'include',
                         method: "PATCH",
+                        headers: {
+                            'X-CSRF-Token': getCSRFToken()
+                        },
                         body: formData
                     })
                         .then(resp => resp.json())
