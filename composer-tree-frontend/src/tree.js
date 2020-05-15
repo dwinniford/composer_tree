@@ -48,7 +48,7 @@ class Tree  {
                     console.log(response.ok)
                     if (response.ok) {
                         Tree.clearContent()
-                        fetch(BACKEND_URL+"/trees")
+                        fetch(BACKEND_URL+"/trees", {credentials: 'include', headers: {'X-CSRF-Token': getCSRFToken()}})
                         .then(resp => resp.json())
                         .then(function(json) {
                             Tree.displayIndex(json)
