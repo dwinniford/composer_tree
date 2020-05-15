@@ -23,7 +23,11 @@ class Tree  {
         const treeInstance = this 
         const editTreeLink = new DisplayLink("edit", function(){
             const treeForm = new Form(Tree.fieldsArray(), "/trees/"+treeInstance.id, "PATCH", Tree)
-            treeForm.display(treeInstance)
+            const formElement = treeForm.render()
+            App.clearContent()
+            heading.innerHTML = "Edit Song Web"
+            content.appendChild(formElement)
+            // Tree.addNewFormListener()
         })
         editTreeLink.display(contentLinks)
         
