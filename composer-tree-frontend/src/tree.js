@@ -36,7 +36,14 @@ class Tree  {
             event.preventDefault();
             const r = confirm("Delete Tree and all notes?")
             if (r) {
-                fetch(event.target.href, {method: "DELETE"})
+                const configObject = {
+                    method: "DELETE",
+                    credentials: 'include',
+                    headers: {
+                        'X-CSRF-Token': getCSRFToken()
+                    }
+                }
+                fetch(event.target.href, configObject)
                 .then(function(response){
                     console.log(response.ok)
                     if (response.ok) {
