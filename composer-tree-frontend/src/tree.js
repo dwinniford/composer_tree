@@ -113,7 +113,6 @@ class Tree  {
             console.log("submit")
             const titleInput = form.title.value  
             const descriptionInput = form.description.value
-            // abstract out these two.  iterate through array query for input and push value into array. spread array into data 
             const data = Tree.formData(titleInput, descriptionInput)
             const configObject = {
                 credentials: 'include',
@@ -127,11 +126,9 @@ class Tree  {
             fetch(BACKEND_URL + "/trees", configObject)
                 .then(resp => resp.json())
                 .then(function(json) {
-                    console.log(json)
-                    const newInstance = new formClassObject(json)
-                    newInstance.displayShow()
-                    // tree form needs to append to the sidebar or update the sidebar
-                    
+                    const tree = new Tree(json)
+                    tree.displayShow()
+                    Tree.appendIndexButton(json)
                 }).catch(function(errors) {
                     console.log(errors)
                 })
@@ -147,6 +144,6 @@ class Tree  {
         return [["title", "text"], ["description", "text"]]
     }
     static newFormTitle() {
-        return "Create a New Idea Tree"
+        return "Create a New Song Web"
     }
 }
