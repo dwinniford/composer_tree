@@ -89,7 +89,14 @@ class User {
     }
 
     static logout () {
-        fetch(BACKEND_URL + "/sessions", {method: "DELETE"})
+        const configObject = {
+            method: "DELETE",
+            credentials: 'include',
+            headers: {
+                'X-CSRF-Token': getCSRFToken()
+            }
+        }
+        fetch(BACKEND_URL + "/sessions", configObject)
             .then( function(response) {
                 console.log(response.status)
                 if (response.status === 200) {
